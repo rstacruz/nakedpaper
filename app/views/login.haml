@@ -1,0 +1,8 @@
+- if session[:error]
+  #error= session.delete(:error)
+%form{action: '/login', method: 'post'}
+  %input{name: 'username'}
+  %input{type: 'password', name: 'password'}
+
+  %button{type: 'submit'}
+    Login
