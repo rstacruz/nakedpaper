@@ -1,7 +1,7 @@
 class Main
   get '/' do
     if logged_in?
-      redirect R(:dashboard)
+      haml :dashboard
     else
       redirect R(:login)
     end

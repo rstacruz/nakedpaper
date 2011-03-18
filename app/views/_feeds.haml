@@ -1,0 +1,8 @@
+- tags.each do |tag|
+  %h3
+    %a{href: R(:tag, tag)}= tag.to_s
+  %ul
+    - if tag.client
+      - tag.feeds.each do |feed|
+        %li
+          %a{href: R(:feed, feed)}= feed

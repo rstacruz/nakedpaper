@@ -1,6 +1,18 @@
+PATH
+  remote: ~/Workdesk/thereader/greader
+  specs:
+    greader (0.0.0)
+      nokogiri
+      rest-client (~> 1.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.0.1)
+    execjs (0.1.0)
     ffaker (1.4.0)
     haml (3.0.25)
     jsmin (1.0.1)
@@ -23,7 +35,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-script
   ffaker
+  greader!
   haml (>= 3.0)
   jsmin
   maruku

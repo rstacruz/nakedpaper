@@ -12,10 +12,10 @@ class Main
 
   post '/login' do
     if authenticate(params)
-      redirect '/dashboard'
+      redirect '/'
     else
       session[:error] = "Try again."
-      redirect '/login'
+      redirect R(:login)
     end
   end
 end

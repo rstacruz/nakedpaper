@@ -28,3 +28,4 @@ doc
 .sass-cache
 .rvmrc
 /vendor/gems/greader
+Gemfile.local

@@ -55,7 +55,7 @@ class JsFiles
   #     %script{:src => href}
   #
   def hrefs
-    @files.map { |f| @options[:prefix] + File.basename(f) + "?#{File.mtime(f).to_i}" }
+    @files.map { |f| @options[:prefix] + File.basename(f, '.*') + ".js?#{File.mtime(f).to_i}" }
   end
 
   # Returns the <script> tags for the development version.
@@ -75,7 +75,11 @@ class JsFiles
 
   # Returns the combined source of all the files.
   def combined
-    @combined ||= @files.map { |file| File.open(file) { |f| f.read } }.join("\n")
+    @combined ||= @files.map { |file|
+      contents = File.open(file) { |f| f.read }
+      contents = CoffeeScript.compile(contents)  if file =~ /\.coffee$/
+      contents
+    }.join("\n")
   end
 
   # Returns a combined, minifed source of all the files.

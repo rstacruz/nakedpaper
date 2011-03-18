@@ -5,7 +5,7 @@ class Main
 
     def jquery(version='1.4.4')
       cdn_js :remote    => GOOGLE_CDN % ["jquery/#{version}/jquery.min.js"],
-             :fallback  => '/js/jquery.min.js',
+             :fallback  => '/js/jquery.js',
              :test      => 'window.jQuery'
     end
 
