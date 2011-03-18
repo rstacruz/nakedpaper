@@ -1,7 +1,6 @@
 class Main
   before do
     unless request.fullpath =~ /^\/(login|css|js|mockups|mockup)/ || request.fullpath == '/'
-      p logged_in?
       require_login
     end
   end

@@ -1,0 +1,10 @@
+- area_class 'entry'
+
+- content_for :content do
+  %header
+    %h1= @entry.title
+
+  %div.contents
+    != @entry.content
+
+!= extends :news

@@ -6,7 +6,8 @@
 
   - @entries.each do |entry|
     %article
-      %h2= entry.title
+      %h2
+        %a{href: R(:feed, @feed, :entry, entry)}= entry.title
       %p!= entry.content
 
 != extends :news

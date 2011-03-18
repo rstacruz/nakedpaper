@@ -1,9 +1,16 @@
 class Main
-  get '/feed/*' do |feed|
+  get '/feed/:feed' do |feed|
     @feed    = client.feed(feed) or not_found
     @entries = @feed.entries(limit: 7)
 
     haml :feed
+  end
+
+  get '/feed/:feed/entry/:entry' do |feed, entry|
+    @feed    = client.feed(feed) or not_found
+    @entry   = @feed.entries[entry]  or not_found
+
+    haml :entry
   end
 
   get '/_feeds' do
