@@ -13,10 +13,11 @@ class Main < Sinatra::Base
   set      :views, root('app', 'views')
   set      :run, lambda { __FILE__ == $0 and not running? }
 
-  enable   :raise_errors, :sessions, :logging,
+  enable   :raise_errors, :logging,
            :show_exceptions, :raise_errors
 
-  use      Rack::Session::Cookie
+  use      Rack::Session::Pool
+
   helpers  Rtopia
   helpers  Sinatra::ContentFor        # sinatra-content_for
   helpers  Sinatra::UserAgentHelpers  # agentsniff

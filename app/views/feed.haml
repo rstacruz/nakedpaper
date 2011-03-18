@@ -4,7 +4,7 @@
   %header
     %h1= @feed.title
 
-  - @feed.entries.each do |entry|
+  - @entries.each do |entry|
     %article
       %h2= entry.title
       %p!= entry.content

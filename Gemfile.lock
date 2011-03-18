@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    ffaker (1.4.0)
     haml (3.0.25)
     jsmin (1.0.1)
     maruku (0.6.0)
@@ -22,6 +23,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ffaker
   haml (>= 3.0)
   jsmin
   maruku
