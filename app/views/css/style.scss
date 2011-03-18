@@ -9,6 +9,20 @@ html, body, #all { height: 100%; }
 #feeds-c { position: fixed; top: 20px; right: 20px; width: 180px; }
 #news-c { height: 100%; }
 
+// Le loading
+body.loading {
+  &, * { cursor: wait; }
+  #news { opacity: 0.9; }
+}
+
+#loading {
+  position: fixed; right: 0; top: 0;
+  width: 100px; height: 20px;
+  background: #adf;
+  z-index: 10;
+  color: white;
+}
+
 // The card
 #news {
   height: 100%; position: relative;
