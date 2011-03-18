@@ -1,6 +1,10 @@
 class Main
   get '/' do
-    haml :home
+    if logged_in?
+      redirect R(:dashboard)
+    else
+      redirect R(:login)
+    end
   end
 end
 

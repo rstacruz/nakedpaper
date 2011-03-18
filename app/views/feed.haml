@@ -1,0 +1,9 @@
+- content_for :content do
+  %h1= @feed.title
+
+  - @feed.entries.each do |entry|
+    %article
+      %h3= entry.title
+      %div!= entry.content
+
+!= extends :news

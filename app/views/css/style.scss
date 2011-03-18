@@ -8,15 +8,16 @@ html, body, #all { height: 100%; }
 #all { display: table; width: 100%; }
 #all>div { display: table-row; width: 100%; }
 #news, #feeds { display: table-cell; height: 100%; }
-#news { background: white; padding: 20px; }
+#news { padding: 20px; }
+#news>div { background: white; padding: 20px; }
 
 #feeds {
   font-size: 0.9em;
-  padding: 10px;
+  padding: 30px 10px;
   width: 220px;
 
   > div {
-    & { padding: 10px; height: 500px; overflow-y: scroll; width: 200px; }
+    & { padding: 0 10px; height: 500px; overflow-y: scroll; width: 200px; }
     & { position: fixed; top: 10px; right: 10px; }
   }
 

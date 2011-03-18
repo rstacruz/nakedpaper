@@ -1,0 +1,5 @@
+%h1 Mockups
+%ul
+  - @mockups.each do |m|
+    %li
+      %a{href: R(:mockup, m)}= m

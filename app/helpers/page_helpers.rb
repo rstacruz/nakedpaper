@@ -11,6 +11,10 @@ class Main
       @page_title = title  if title
       @page_title
     end
+
+    def extends(what)
+      partial what
+    end
   end
 
   helpers PageHelpers

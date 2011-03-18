@@ -1,6 +1,6 @@
 class Main
   before do
-    unless request.fullpath =~ %r{\A/(login|css|js)}
+    unless request.fullpath =~ %r{\A/(login|css|js|mockups|mockup)?}
       require_login
     end
 
