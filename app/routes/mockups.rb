@@ -17,9 +17,9 @@ class Mockup
 
   def self.all
     list = Dir[path('*.haml')]
-    list.map! { |fname| File.basename(fname, '.*') }
-    list.delete 'index'
-    list.map! { |fname| Mockup[fname] }
+    list.map!    { |fname| File.basename(fname, '.*') }
+    list.reject! { |fname| fname[0..0] == '_' || fname == 'index' }
+    list.map!    { |fname| Mockup[fname] }
     list
   end
 

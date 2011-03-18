@@ -1,10 +1,11 @@
 class Main
   before do
     unless request.fullpath =~ %r{\A/(login|css|js|mockups|mockup)?}
+      puts "HAHA"
       require_login
     end
 
-    client.expire!  if params[:expire] && client
+    #client.expire!  if params[:expire] && client
   end
 
   get '/login' do

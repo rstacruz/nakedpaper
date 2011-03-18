@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem "sinatra", require: "sinatra/base"
+gem "ffaker"
 gem "jsmin"
 gem "haml", ">= 3.0"
 gem "sinatra-content-for", require: "sinatra/content_for"

@@ -1,5 +1,5 @@
 @mixin ae-reset {
-  $reset-font: arial, helvetica, sans-serif !default;
+  $reset-font: 'helvetica neue', helvetica, arial, helvetica, sans-serif  !default;
   $reset-font-size: 0.75em !default;
   $reset-background: #fff !default;
   $reset-font-color: #333 !default;

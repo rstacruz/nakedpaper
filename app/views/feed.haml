@@ -1,9 +1,12 @@
+- area_class 'feed compact'
+
 - content_for :content do
-  %h1= @feed.title
+  %header
+    %h1= @feed.title
 
   - @feed.entries.each do |entry|
     %article
-      %h3= entry.title
-      %div!= entry.content
+      %h2= entry.title
+      %p!= entry.content
 
 != extends :news

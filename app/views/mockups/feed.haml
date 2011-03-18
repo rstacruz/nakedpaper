@@ -1,7 +1,20 @@
+- area_class 'feed compact'
+
 - content_for :content do
-  xxx
-  
+  %header
+    %h1 The Timeless Repository
+
+  - 7.times do
+    %article
+      %h2 Sony to create new PS4
+
+      %p
+        - 10.times do
+          Lorem ipsum dolor sit amet, consecteteur adicicising elit.
+          Sed do eiusmod tempor incudidunt nam posture magna aliqua
+          ut labore et dolore.
+ 
 - content_for :feeds do
-  xxx
+  != partial :'mockups/_feeds'
 
 != partial :news

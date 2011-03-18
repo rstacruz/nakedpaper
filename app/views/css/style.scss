@@ -1,33 +1,70 @@
 @import 'settings';
 
-$reset-font: arial, sans-serif;
+$reset-font: 'helvetica neue', helvetica, arial, helvetica, sans-serif;
 @include ae-reset;
 
 body { background: #999; }
 html, body, #all { height: 100%; }
-#all { display: table; width: 100%; }
-#all>div { display: table-row; width: 100%; }
-#news, #feeds { display: table-cell; height: 100%; }
-#news { padding: 20px; }
-#news>div { background: white; padding: 20px; }
+#all { padding: 20px 240px 20px 20px; @include box-sizing(border-box); }
+#feeds-c { position: fixed; top: 20px; right: 20px; width: 180px; }
+#news-c { height: 100%; }
+
+// The card
+#news {
+  height: 100%; position: relative;
+  background: white; padding: 20px; overflow-y: auto;
+  @include box-sizing(border-box);
+  @include shadow(0 2px 3px $black20);
+}
 
 #feeds {
-  font-size: 0.9em;
-  padding: 30px 10px;
-  width: 220px;
+  &    { font-size: 0.9em; }
+  &    { padding: 0 10px; height: 500px; overflow-y: auto; }
 
-  > div {
-    & { padding: 0 10px; height: 500px; overflow-y: scroll; width: 200px; }
-    & { position: fixed; top: 10px; right: 10px; }
-  }
-
-  h3 { margin: 0; padding: 0; font-size: 1em; }
-  ul { @include non-list; }
-  ul { margin-bottom: 10px; }
-  a { display: block; @include ellipsis; }
+  h3   { margin: 0; padding: 0; font-size: 1em; }
+  ul   { @include non-list; }
+  ul   { margin-bottom: 10px; }
+  a    { display: block; @include ellipsis; }
   li a { color: #333; text-shadow: 1px 1px 0 rgba(#fff, 0.2); padding: 0 1px; }
   h3 a { color: #ddd; background: #555; padding: 2px; @include border-radius(2px); margin-bottom: 2px; }
   h3 a { text-shadow: 1px 1px 0 rgba(#000, 0.2); }
 }
 
 @import 'scroll';
+
+// Theme
+article h2 {
+  font-family: georgia, serif;
+}
+
+#all.feed.compact #news {
+}
+#all.feed.compact article {
+  width: 25%; border-right: solid 1px #ccc;
+  padding: 0 10px 10px 10px; @include box-sizing(border-box);
+  float: left; height: 50%;
+  text-overflow: ellipsis; overflow: hidden;
+
+  p, h2 { margin: 0; padding: 0; }
+
+  &:first-of-type {
+    width: 50%;
+    h2 { font-size: 16pt; }
+  }
+}
+
+// News!
+#news {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+#news header {
+  & { padding-bottom: 10px; }
+  & { position: absolute; top: 0; left: 0; width: 100%; }
+  & { height: 40px; }
+
+  h1 { margin: 15px 20px; padding: 0 0 10px 0; font-size: 16pt; }
+  h1 { border-bottom: solid 1px #ccc; }
+  h1 { line-height: 30px; height: 30px; overflow: hidden; }
+}

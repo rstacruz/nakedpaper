@@ -1,21 +1,20 @@
 - body_class 'news'
 
-#all
-  %div
+#all{class: area_class}
+  #news-c
     #news
-      %div
-        != yield_content :content
+      != yield_content :content
 
+  #feeds-c
     #feeds
-      %div          
-        - if has_content?(:feeds)
-          != yield_content :feeds
-        - else
-          - client.tags.each do |tag|
-            %h3
-              %a{href: R(:tag, tag)}= tag.to_s
-            %ul
-              - if tag.client
-                - tag.feeds.each do |feed|
-                  %li
-                    %a{href: R(:feed, feed)}= feed
+      - if has_content?(:feeds)
+        != yield_content :feeds
+      - else
+        - client.tags.each do |tag|
+          %h3
+            %a{href: R(:tag, tag)}= tag.to_s
+          %ul
+            - if tag.client
+              - tag.feeds.each do |feed|
+                %li
+                  %a{href: R(:feed, feed)}= feed
