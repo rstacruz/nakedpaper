@@ -2,7 +2,12 @@
 
 - content_for :content do
   %header
-    %h1= @feed.title
+    %h1= @tag
+
+  .feeds
+    - @feeds.each do |feed|
+      %li
+        %a{href: R(:feed, feed)}= feed
 
   .entries
     - @entries.each do |entry|

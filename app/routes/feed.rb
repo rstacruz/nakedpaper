@@ -13,6 +13,14 @@ class Main
     haml :'news/entry'
   end
 
+  get '/tag/:tag' do |tag|
+    @tag     = client.tag(tag)  or not_found
+    @feeds   = @tag.feeds
+    @entries = @tag.entries
+
+    haml :'news/tag'
+  end
+
   get '/_feeds' do
     partial :'news/_feeds', tags: client.tags
   end
