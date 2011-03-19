@@ -11,8 +11,8 @@ gem "nokogiri"
 gem "coffee-script", require: "coffee_script"
 gem "omniauth"
 
-if File.file?('Gemfile.local') && !ENV['HEROKU']
+if File.file?('Gemfile.local')
   eval File.read('Gemfile.local')
-else
-  gem "greader", git: "git://github.com/rstacruz/greader.git"
 end
+
+# gem "greader", git: "git://github.com/rstacruz/greader.git"
