@@ -9,3 +9,8 @@
     #feeds
       - if has_content?(:feeds)
         != yield_content :feeds
+
+  - unless request.xhr?
+    #logo
+      %a{href: '/'} Np*
+
