@@ -1,0 +1,36 @@
+#feeds {
+  &    { font-size: 0.9em; }
+  &    { padding: 0 10px; height: 600px; overflow-y: auto; }
+
+  h3   { margin: 0; padding: 0; font-size: 1em; }
+  ul   { @include non-list; }
+  ul   { margin-bottom: 10px; }
+
+  a    {
+    &  { display: block; @include ellipsis; }
+    &  { @include border-radius(2px); }
+    &:hover { text-decoration: none; }
+  }
+
+  li a {
+    &  { color: #333; text-shadow: 1px 1px 0 rgba(#fff, 0.2); }
+    &  { padding: 4px 0; }
+    &  { border-bottom: solid 1px $black10; }
+    &:hover { color: #111; }
+  }
+
+  li:last-child a { border-bottom: 0; }
+
+  h3 a {
+    & { font-family: 'PT Sans', sans-serif; }
+    & { letter-spacing: 1px; }
+
+    & { color: #ccc; background: #333; margin-bottom: 2px; }
+    & { text-shadow: 1px 1px 0 rgba(#000, 0.2); }
+    & { text-transform: uppercase; font-size: 0.9em; }
+    & { padding: 0px 5px; }
+    & { @include shadow(1px 1px 0 $white10); }
+    &:hover { background: $blue; }
+  }
+}
+

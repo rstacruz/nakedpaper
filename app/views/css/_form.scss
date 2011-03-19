@@ -1,0 +1,63 @@
+$blue: #7bd;
+$hicyan: #7bd * 1.1;
+$cyan: #7bd * 1.1;
+$small: 8pt;
+
+textarea, input {
+  @include box-sizing(border-box);
+  @include border-radius(3px);
+  @include shadow(1px 1px 0 rgba(#000, 0.20), 0 0 2px rgba(#000, 0.3));
+  padding: 10px; border: 0;
+  background: white; color: #333;
+
+  &:focus {
+    outline: 0;
+    @include shadow(1px 1px 0 rgba(#000, 0.20), 0 0 4px $blue, inset 0 0 4px $hicyan);
+  }
+}
+
+fieldset { margin: 0; padding: 0; border: 0; }
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+}
+
+input[type=submit],
+input[type=button],
+a.button,
+button {
+  padding: 2px 10px;
+  border: 0; margin: 0;
+  display: inline-block;
+  font-weight: bold; font-size: $small;
+  line-height: 18px;
+  @include border-radius(15px);
+  @include gradient(#eee, #ddd);
+  &:hover { @include gradient(#f4f4f4, #ddd); text-decoration: none; }
+  color: #333; text-shadow: 1px 1px 0 $white40;
+  @include shadow(1px 1px 0 $black20, 0 0 2px $cyan);
+
+  &.black { @extend button.black; }
+  &.dark  { @extend button.dark; }
+}
+
+button.black {
+  @include gradient(#555, #333); color: #eee; text-shadow: 1px 1px 0 #222;
+}
+
+button.dark {
+  $bluex: desaturate($blue, 0.9);
+  @include gradient($bluex*1.1, $bluex*0.9);
+  color: #eee; text-shadow: 1px 1px 0 $black40;
+  @include shadow(1px 1px 0 $white40);
+  &:hover { @include gradient($bluex*1.0, $bluex*0.8); }
+}
+
+button.big {
+  font-size: 1.2em; padding: 8px 20px;
+  @include border-radius(20px);
+}
+//button:active { @include gradient(#555, #888); color: #eee; text-shadow: 1px 1px 0 #222; }
+
+button.save { @extend button.black; }

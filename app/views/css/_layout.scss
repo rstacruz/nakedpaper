@@ -1,0 +1,11 @@
+html, body, #all { height: 100%; }
+#all {
+    padding: 20px 220px 20px 20px;
+    @include box-sizing(border-box);
+}
+#feeds-c {
+  position: fixed;
+  top: 20px; right: 10px; width: 200px;
+}
+
+#news-panes { height: 100%; }

@@ -1,0 +1,17 @@
+// Le loading
+body.loading {
+  &, * { cursor: wait; }
+  //#news-panes>* { opacity: 0.9; }
+}
+
+#loading {
+  position: fixed; right: 0; top: 0;
+  width: 100px; height: 20px;
+  background: #733;
+  padding: 2px;
+  text-align: center;
+  @include shadow(0 2px 3px $black30);
+  z-index: 10;
+  color: white;
+}
+

@@ -1,11 +1,23 @@
-- if session[:error]
-  #error= session.delete(:error)
-%form{action: '/login', method: 'post'}
-  %input{name: 'email'}
-  %input{type: 'password', name: 'password'}
 
-  %button{type: 'submit'}
-    Login
+#all.login
+  #login
+    - if session[:error]
+      #error= session.delete(:error)
 
-or
-%a.ext{href: R(:auth, :google), target: '_self'} Google connect
+    %p.connect
+      %a.button.black{href: R(:auth, :google), target: '_self'} Google connect
+
+    %p.or
+      %span or
+
+    %form{action: '/login', method: 'post'}
+      %p
+        %input{name: 'email', placeholder: "Google email"}
+      %p
+        %input{type: 'password', name: 'password', placeholder: "Password"}
+
+      %p.submit
+        %button{type: 'submit'}
+          Login
+
+
