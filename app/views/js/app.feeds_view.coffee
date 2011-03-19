@@ -14,4 +14,4 @@ NN.FeedsView = NN.View.extend
       self.$el.html data
 
 $('#feeds').livequery ->
-  new NN.FeedsView el: this
+  NN.Feeds = new NN.FeedsView el: this

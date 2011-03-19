@@ -6,7 +6,7 @@ class Main
   end
 
   get '/login' do
-    haml :login
+    haml :'home/login'
   end
 
   post '/login' do

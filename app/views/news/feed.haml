@@ -1,0 +1,16 @@
+- area_class 'feed compact'
+
+- content_for :content do
+  %header
+    %h1= @feed.title
+
+  - @entries.each do |entry|
+    %article
+      %h2
+        %a{href: R(:feed, @feed, :entry, entry)}!= entry.title
+      - if entry.image?
+        %p.image
+          %img{src: entry.image_url}
+      %p= entry.summary
+
+!= extends :news

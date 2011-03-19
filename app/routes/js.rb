@@ -11,7 +11,7 @@ class Main
   end
 
   get '/js/:name.js' do |name|
-    fname = Dir[Main.root("app/views/js/#{name}.{coffee,js}")].first  or not_found
+    fname = Dir[Main.root("app/views/js/#{name}.{js,coffee}")].first  or not_found
 
     content_type :js
     last_modified File.mtime(fname)
@@ -20,7 +20,7 @@ class Main
     if fname =~ /\.coffee$/
       coffee :"js/#{name}"
     else
-      File.read fname
+      send_file fname
     end
   end
 end
