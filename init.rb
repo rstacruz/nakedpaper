@@ -32,8 +32,10 @@ class Main < Sinatra::Base
 end
 
 # Set up OAuth
-key, secret = Main.oauth_secrets
-Main.set :oauth, !(secret.nil? || key == 'consumer_key' || secret == 'consumer_secret')
+key    = Main.oauth_key    || ENV['OAUTH_KEY']
+secret = Main.oauth_secret || ENV['OAUTH_SECRET']
+
+Main.set :oauth, !(key.nil? || secret.nil?)
 
 if Main.oauth?
   Main.use OmniAuth::Builder do
