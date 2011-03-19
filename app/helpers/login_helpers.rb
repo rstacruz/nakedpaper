@@ -1,6 +1,10 @@
 module LoginHelpers
   def authenticate(options)
-    session[:client] ||= GReader.auth(email: options['username'], password: options['password'])
+    if options['username']
+      session[:client] ||= GReader.auth(email: options['username'], password: options['password'])
+    else
+      session[:client] ||= GReader.auth(access_token: options[:access_token])
+    end
 
     logged_in?
   end
