@@ -19,14 +19,19 @@ class Main
   end
 
   get '/auth/:name/callback' do
-    p request.env['omniauth.auth']
-    token = request.env['omniauth.auth']['extra']['access_token']
-    p token.get('http://www.google.com/reader/api/0/token').body
-    authenticate access_token: token
-    redirect '/'
+    omni  = request.env['omniauth.auth']
+    token = omni['extra']['access_token']
+
+    if authenticate('email' => omni['uid'], 'access_token' => token)
+      redirect '/'
+    else
+      session[:error] = "OAuth failed."
+      redirect R(:login)
+    end
   end
 
   get '/auth/failure' do
+    session[:error] = "OAuth failed."
     redirect R(:login)
   end
 end

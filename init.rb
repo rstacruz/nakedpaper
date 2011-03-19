@@ -31,6 +31,19 @@ class Main < Sinatra::Base
   end
 end
 
+# Set up OAuth
+key, secret = Main.oauth_secrets
+Main.set :oauth, !(secret.nil? || key == 'consumer_key' || secret == 'consumer_secret')
+
+if Main.oauth?
+  Main.use OmniAuth::Builder do
+    provider :google, key, secret, scope: "http://www.google.com/reader/api"
+  end
+else
+  puts "*** You need to enter the Google OAuth key/secret."
+  puts "*** See config/oauth.defaults.rb for details."
+end
+
 Dir["./{lib,app/**}/*.rb"].each { |rb| require rb }
 
 Main.set :port, ENV['PORT'].to_i  unless ENV['PORT'].nil?
