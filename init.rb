@@ -22,8 +22,6 @@ class Main < Sinatra::Base
   helpers  Sinatra::ContentFor        # sinatra-content_for
   helpers  Sinatra::UserAgentHelpers  # agentsniff
 
-  set      :client, nil
-
   # Load all, but load defaults first
   Dir[root('config', '{*.defaults,*}.rb')].uniq.each { |f| load f }
 

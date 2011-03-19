@@ -1,6 +1,6 @@
 %article
   %h2
-    %a{href: R(:feed, @feed, :entry, entry)}!= entry.title
+    %a{href: R(:feed, entry.feed, :entry, entry)}!= entry.title
   - if entry.image?
     %p.image
       %img{src: entry.image_url}

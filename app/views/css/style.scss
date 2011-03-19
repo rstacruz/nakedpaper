@@ -75,6 +75,7 @@ article h2 {
 #news-panes>* {
   padding-top: 80px;
   padding-bottom: 80px;
+  .feeds, .entries { display: inline; }
 }
 
 #news-panes>* header {
