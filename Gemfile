@@ -9,7 +9,7 @@ gem "maruku"
 gem "rest-client", require: "rest_client"
 gem "nokogiri"
 gem "coffee-script", require: "coffee_script"
-gem "oauth"
+gem "omniauth"
 
 if File.file?('Gemfile.local') && !ENV['HEROKU']
   eval File.read('Gemfile.local')

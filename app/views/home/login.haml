@@ -1,8 +1,11 @@
 - if session[:error]
   #error= session.delete(:error)
 %form{action: '/login', method: 'post'}
-  %input{name: 'username'}
+  %input{name: 'email'}
   %input{type: 'password', name: 'password'}
 
   %button{type: 'submit'}
     Login
+
+or
+%a.ext{href: R(:auth, :google), target: '_self'} Google connect
