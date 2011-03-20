@@ -28,7 +28,8 @@ NN.FeedView = NN.View.extend
     @$el.attr 'class', "news-pane feed #{@classname}"
     @buildView()
 
-    @$view.ani 'fade in'
+    # Damn slow for big feeds
+    # @$view.ani 'fade in'
 
     # Activate the button
     @$views.find('.active').removeClass 'active'
