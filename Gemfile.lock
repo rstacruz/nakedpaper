@@ -86,6 +86,7 @@ DEPENDENCIES
   maruku
   nokogiri
   oa-oauth
+  rack-test
   rest-client
   sinatra
   sinatra-content-for

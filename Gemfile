@@ -17,4 +17,8 @@ group :test do
   gem "capybara"
 end
 
+group :development do
+  gem "rack-test", require: "rack/test"
+end
+
 # gem "greader", git: "git://github.com/rstacruz/greader.git"

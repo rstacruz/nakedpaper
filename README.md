@@ -39,3 +39,6 @@ Start:
 ## 3. Deployment
 
 Do the configuration things, then run as a Rack app via Passenger/Heroku/etc.
+
+To deploy to Heroku (and other hosts without CoffeeScript support), do
+`rake freeze` to freeze the JS/CSS files first.
