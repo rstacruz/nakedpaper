@@ -2,7 +2,8 @@
 
 - content_for :content do
   %header
-    %h1!= @entry.title
+    %h1
+      %a{href: @entry.url, target: '_blank'}!= @entry.title
 
   %div.contents
     != @entry.content

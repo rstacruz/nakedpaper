@@ -2,7 +2,8 @@
 
 - content_for :content do
   %header
-    %h1= @feed.title
+    %h1
+      %a{href: @feed.url, target: '_blank'}= @feed.title
 
   .entries
     - @entries.each do |entry|

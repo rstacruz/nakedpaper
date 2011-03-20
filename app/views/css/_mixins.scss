@@ -1,0 +1,5 @@
+// @extend a.non-link
+a.non-link {
+  color: #333;
+  &:hover { text-decoration: none; color: $blue; }
+}

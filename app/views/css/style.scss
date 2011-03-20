@@ -19,9 +19,12 @@ body { background: #cacac4; }
   @include border-bottom-radius(2px);
 }
 
+@import 'mixins';
+
 @import 'loading';
 @import 'feeds';
 @import 'login';
 @import 'form';
 @import 'scroll';
 @import 'news_feed';
+@import 'news_entry';
