@@ -36,7 +36,7 @@ Start:
     rake start   # or `rackup`, `thin start`, etc
     rake test
 
-## 3. Deployment
+### 3. Deployment
 
 Do the configuration things, then run as a Rack app via Passenger/Heroku/etc.
 
