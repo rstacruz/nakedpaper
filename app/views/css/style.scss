@@ -30,3 +30,16 @@ body { background: $bg; }
 @import 'scroll';
 @import 'news_feed';
 @import 'news_entry';
+
+#aux {
+ position: fixed; bottom: 10px; right: 10px;
+ text-align: center; width: 200px;
+
+ form {
+   display: inline; }
+
+ a, button {
+   @extend a.non-link; background: transparent; border: 0; padding: 0;
+   display: inline-block; padding: 2px 5px;
+   @include shadow(none); }
+}

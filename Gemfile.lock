@@ -1,11 +1,13 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    RedCloth (4.2.7)
     addressable (2.2.4)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.0.1)
+    contest (0.1.2)
     execjs (0.1.0)
     faraday (0.5.7)
       addressable (~> 2.2.4)
@@ -82,7 +84,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   coffee-script
+  contest
   ffaker
   haml (>= 3.0)
   jsmin

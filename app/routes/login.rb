@@ -1,6 +1,6 @@
 class Main
   before do
-    unless request.fullpath =~ /^\/(auth|login|css|js|mockups|mockup)/ || request.fullpath == '/'
+    unless request.fullpath =~ /^\/(auth|login|logout|page|about|css|js|mockups|mockup)/ || request.fullpath == '/'
       require_login
     end
   end
@@ -16,6 +16,11 @@ class Main
       session[:error] = "Try again."
       redirect R(:login)
     end
+  end
+
+  post '/logout' do
+    logout!
+    redirect '/'
   end
 
   get '/auth/:name/callback' do

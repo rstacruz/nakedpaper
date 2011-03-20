@@ -2,14 +2,16 @@ Nakedpaper has been lovingly built by the boys of Sinefunc.com.
 
 h3. Todo
 
-* Logout
 * Title changing
 * Better list view
 * Icons for toolbar
 * Refresh button
-* About page
 * Entry dates
 
 Further down
 * Read
 
+Done:
+
+* Logout
+* About page

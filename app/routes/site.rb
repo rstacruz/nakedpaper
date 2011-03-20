@@ -6,5 +6,12 @@ class Main
       redirect R(:login)
     end
   end
+
+  get '/about' do
+    file  = Main.root('ABOUT.textile')
+    @text = textile File.read(file)
+
+    haml :'site/about'
+  end
 end
 

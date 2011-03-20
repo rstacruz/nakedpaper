@@ -10,9 +10,10 @@ gem "rest-client", require: "rest_client"
 gem "nokogiri"
 gem "coffee-script", require: "coffee_script"
 gem "omniauth"
+gem "RedCloth", require: "redcloth"
 
-if File.file?('Gemfile.local')
-  eval File.read('Gemfile.local')
+group :test do
+  gem "contest"
 end
 
 # gem "greader", git: "git://github.com/rstacruz/greader.git"

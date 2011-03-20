@@ -9,6 +9,10 @@ module LoginHelpers
     logged_in?
   end
 
+  def logout!
+    session[:client] = nil
+  end
+
   def logged_in?
     ! client.nil?
   end

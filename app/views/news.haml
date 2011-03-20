@@ -5,12 +5,19 @@
     #news{class: "news-pane #{pane_class}"}
       != yield_content :content
 
-  #feeds-c
-    #feeds
-      - if has_content?(:feeds)
-        != yield_content :feeds
+  - if logged_in?
+    #feeds-c
+      #feeds
+        - if has_content?(:feeds)
+          != yield_content :feeds
 
   - unless request.xhr?
     #logo
       %a{href: '/'} Np*
+
+    #aux
+      %a{href: '/about'}
+        About
+      %form{action: '/logout', method: 'post'}
+        %button{type: 'submit'} Logout
 
