@@ -3,14 +3,45 @@ article h2 {
   font-family: Georgia, serif;
 }
 
+.pseudo-image {
+  background-size: 100% auto;
+  background-position: center center;
+  background-color: #eee;
+  border: solid 2px #fff;
+  @include shadow(0 0 1px black);
+  &:hover { border-color: $maroon; }
+}
+
 // Line view
 #all .news-pane.feed.line {
   .view { padding: 0 20px; }
   article {
-    a { font-size: 1.1em; }
-    a { display: block; border-bottom: solid 1px 
-      #ddd; padding: 5px 0;
-      @extend a.non-link; }
+    $pad: 8px;
+
+    a {
+      display: block; border-bottom: solid 1px #ddd; padding: $pad 0;
+      @extend a.non-link; padding-left: 160px; position: relative;
+      overflow: hidden; }
+
+    .date {
+      position: absolute; left: 0; top: $pad;
+      display: block; width: 140px; font-weight: normal; color: #888;
+      text-align: right; }
+
+    strong {
+      font-size: 1.2em; margin-right: 10px; }
+
+    .summary {
+      color: #888; font-weight: normal; display: inline; }
+
+    span.image {
+      @extend .pseudo-image;
+      display: block; width: 80px; height: 40px;
+      float: right; margin-left: 10px; }
+
+    &:hover {
+      span.image { border-color: $green; }
+    }
   }
 }
 
@@ -19,7 +50,7 @@ article h2 {
   article {
     width: 25%;
     padding: 0 20px 20px 20px; @include box-sizing(border-box);
-    float: left; height: 40%;
+    float: left; height: 48%;
     margin: 10px 0;
     text-overflow: ellipsis; overflow: hidden;
 
@@ -36,21 +67,16 @@ article h2 {
     h2 a:hover { text-decoration: none; color: $blue; }
 
     a.image {
-      display: block; height: 70px; background-color: #eee;
-      border: solid 2px #fff;
-      @include shadow(0 0 1px black);
-      background-size: 100% auto;
-      background-position: center center;
+      display: block; height: 70px;
+      @extend .pseudo-image;
       margin-top: 1px;
       margin-bottom: 10px;
-
-      &:hover { border-color: $maroon; }
     }
   }
 }
 
 // News pane
-#all.feed #news-panes>* {
+#all.feed .news-pane {
   & {
     padding: 80px 0 0 0;
     overflow: hidden; }

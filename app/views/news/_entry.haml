@@ -7,3 +7,5 @@
     %img.image{src: entry.image_url}
   %div.summary= entry.summary
   %div.content= entry.content
+  %div.published= entry.published.to_i
+  %a.external{href: entry.url}

@@ -48,11 +48,13 @@ NN.FeedView = NN.View.extend
     _.map @$entries.find('article'), ($e) ->
       $e    = $($e)
       entry =
-        href    : $e.find('>.title').attr('href')
-        title   : $e.find('>.title').html()
-        image   : $e.find('>.image').attr('src')
-        summary : $e.find('>.summary').html()
-        content : $e.find('>.content').html()
+        href:      $e.find('>.title').attr('href')
+        url:       $e.find('>.external').attr('href')
+        title:     $e.find('>.title').html()
+        image:     $e.find('>.image').attr('src')
+        summary:   $e.find('>.summary').html()
+        content:   $e.find('>.content').html()
+        published: new Date(+$e.find('>.published').html())
 
   onSwitchView: (e) ->
     $target = $(e.target)
@@ -72,7 +74,19 @@ NN.LineFeedView =
     <% _.each(entries, function(e) { %>
       <article>
         <a href="<%= e.href %>">
-          <%= e.title %>
+          <span class="date">
+            <%= e.published.toLocaleString() %>
+          </span>
+          <% if (e.image) { %>
+            <span class="image" style="background-image:
+              url(<%= e.image %>);"></span>
+          <% } %>
+          <strong>
+            <%= e.title %>
+          </strong>
+          <div class="summary">
+            <%= e.summary %>
+          </div>
         </a>
       </article>
     <% }); %>
