@@ -25,15 +25,27 @@ article h2 {
 
     p, h2 { margin: 0; padding: 0; }
 
-    p.image img { max-height: 100px; max-width: 100%; }
-
     &:first-of-type {
       width: 50%;
       h2 { font-size: 16pt; }
+      p { font-size: 12pt; }
     }
 
+    h2 { margin-bottom: 5px; }
     h2 a { color: #111; }
     h2 a:hover { text-decoration: none; color: $blue; }
+
+    a.image {
+      display: block; height: 70px; background-color: #eee;
+      border: solid 2px #fff;
+      @include shadow(0 0 1px black);
+      background-size: 100% auto;
+      background-position: center center;
+      margin-top: 1px;
+      margin-bottom: 10px;
+
+      &:hover { border-color: $maroon; }
+    }
   }
 }
 

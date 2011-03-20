@@ -1,7 +1,9 @@
+-# This is going to be a JS model... this is not presentational.
+-# See NN.FeedView (JS).
+
 %article
-  %h2
-    %a{href: R(:feed, entry.feed, :entry, entry)}!= entry.title
+  %a.title{href: R(:feed, entry.feed, :entry, entry)}!= entry.title
   - if entry.image?
-    %p.image
-      %img.image{src: entry.image_url}
-  %p.summary= entry.summary
+    %img.image{src: entry.image_url}
+  %div.summary= entry.summary
+  %div.content= entry.content

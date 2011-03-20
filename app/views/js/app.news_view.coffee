@@ -33,19 +33,23 @@ NN.FeedView = NN.View.extend
     view = @$ '.view'
     view.remove()
 
+  # Override me if you need to
   buildView: ->
-    # virtual
+    @$view = $("<div class='view'>")
+    @$view.html @template('entries': @entries())
+
+    @$el.append @$view
 
   # Gets the entries model.
   entries: ->
     _.map @$entries.find('article'), ($e) ->
       $e    = $($e)
       entry =
-        href    : $e.find('h2 a').attr('href')
-        title   : $e.find('h2 a').html()
-        image   : $e.find('img.image').attr('src')
-        summary : $e.find('p.summary').html()
-        content : $e.find('p.content').html()
+        href    : $e.find('>.title').attr('href')
+        title   : $e.find('>.title').html()
+        image   : $e.find('>.image').attr('src')
+        summary : $e.find('>.summary').html()
+        content : $e.find('>.content').html()
 
   onSwitchView: (e) ->
     $target = $(e.target)
@@ -69,20 +73,28 @@ NN.LineFeedView =
     <% }); %>
     """
 
-  buildView: ->
-    @$view = $("<div class='view'>")
-    @$view.html @template('entries': @entries())
-
-    @$el.append @$view
-
 NN.CompactFeedView =
   classname: 'compact'
 
-  buildView: ->
-    @$view = $("<div class='view'>")
-    @$view.html @$entries.html()
+  template:
+    _.template """
+    <% _.each(entries, function(e) { %>
+      <article>
+        <% if (e.image) { %>
+          <a class="image" href="<%= e.href %>" style="background-image: 
+          url(<%= e.image %>);"></a>
+        <% } %>
 
-    @$el.append @$view
+        <h2>
+          <a href="<%= e.href %>">
+            <%= e.title %>
+          </a>
+        </h2>
+
+        <p class="summary"><%= e.summary %></p>
+      </article>
+    <% }); %>
+    """
 
 $('.news-pane.feed').livequery ->
   new NN.FeedView el: this
