@@ -7,11 +7,16 @@ h3. Todo
 * Icons for toolbar
 * Refresh button
 * Entry dates
+* Unread counts
+* Entry view: Adjust width/font size/etc
+* Tag view
+* Themes
 
-Further down
-* Read
+h3. Further down
 
-Done:
+* Read/unread tracking
+
+h3. Done:
 
 * Logout
 * About page

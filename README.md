@@ -18,7 +18,7 @@ Or via a config file (see that file for details):
 
 Do the configuration things above, then do the Bundler dance:
 
-    rvm --rvmrc --create 1.9.2@myproject
+    rvm --rvmrc --create 1.9.2@nakedreader
     bundle install
 
 If the GReader gem is actively being developed alongside this,
