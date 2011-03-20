@@ -47,7 +47,7 @@ NN.Workspace = Backbone.Controller.extend
     $("#news").hide().removeAttr('id')
     $("#all").attr 'class', $news.attr('data-all-class')
     $news.attr 'id', 'news'
-    $news.ani('fade in').show()
+    $news.show()
 
     $(document).trigger 'after_navigate'
 
