@@ -16,6 +16,14 @@ class Main
       condition ? {:disabled => '1'} : {}
     end
 
+    def hide_if(condition)
+      condition ? {:style => 'display:none;'} : {}
+    end
+
+    def show_if(condition)
+      hide_if !condition
+    end
+
     def enabled_if(condition)
       disabled_if !condition
     end

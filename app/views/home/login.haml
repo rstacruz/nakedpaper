@@ -11,17 +11,18 @@
     %p.connect
       %a.button.black{href: R(:auth, :google), target: '_self'} Google Connect
 
-    %p.or
-      %span or
+    .advanced{hide_if(params[:advanced].nil?)}
+      %p.or
+        %span or
 
-    %form{action: '/login', method: 'post'}
-      %p
-        %input{id: 'email', name: 'email', placeholder: "Google email"}
-      %p
-        %input{id: 'password', type: 'password', name: 'password', placeholder: "Password"}
+      %form{action: '/login', method: 'post'}
+        %p
+          %input{id: 'email', name: 'email', placeholder: "Google email"}
+        %p
+          %input{id: 'password', type: 'password', name: 'password', placeholder: "Password"}
 
-      %p.submit
-        %button{type: 'submit'}
-          Login
+        %p.submit
+          %button{type: 'submit'}
+            Login
 
 
