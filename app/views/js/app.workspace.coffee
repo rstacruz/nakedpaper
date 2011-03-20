@@ -25,6 +25,7 @@ NN.Workspace = Backbone.Controller.extend
         $news = $("<div>")
         $news.attr 'data-source', "/#{path}"
         $news.attr 'data-all-class', $data.find('#all').attr('class')
+        $news.attr 'class', $data.find('#news').attr('class')
 
         # Push it hidden
         $news.hide().html $data.find("#news").html()

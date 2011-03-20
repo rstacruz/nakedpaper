@@ -1,11 +1,18 @@
-- area_class 'feed compact'
+- area_class 'feed'
+- pane_class 'feed'
 
 - content_for :content do
   %header
     %h1
       %a{href: @feed.url, target: '_blank'}= @feed.title
 
-  .entries
+    %ul.views
+      %li
+        %a{href: '#line'} Ln
+      %li
+        %a{href: '#compact'} Co
+
+  .entries.hide
     - @entries.each do |entry|
       != partial :'news/_entry', entry: entry
 

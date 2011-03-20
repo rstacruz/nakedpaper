@@ -19,7 +19,6 @@ if pushSupport and Backbone? and Backbone.History?
     # In that case, call Backbone.history.saveLocation and Backbone.history.loadUrl directly
     ajaxifyInternalLinks: ->
       self = this
-      console.log 'ajaxing'
       $('a[href^=/]').live 'click', (e) ->
         return true  if e.metaKey or e.shiftKey or e.ctrlKey
         return true  if $(this).attr('target')

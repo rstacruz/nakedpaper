@@ -14,6 +14,13 @@ class Main
       @area_classes.join(' ')
     end
 
+    def pane_class(v = nil)
+      @pane_classes ||= []
+      @pane_classes << v  if v
+
+      @pane_classes.join(' ')
+    end
+
     def title(title=nil)
       @page_title = title  if title
       @page_title

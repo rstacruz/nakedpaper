@@ -3,8 +3,19 @@ article h2 {
   font-family: Georgia, serif;
 }
 
+// Line view
+#all .news-pane.feed.line {
+  .view { padding: 0 20px; }
+  article {
+    a { font-size: 1.1em; }
+    a { display: block; border-bottom: solid 1px 
+      #ddd; padding: 5px 0;
+      @extend a.non-link; }
+  }
+}
+
 // Compact view
-#all.feed {
+.news-pane.feed.compact {
   article {
     width: 25%;
     padding: 0 20px 20px 20px; @include box-sizing(border-box);
@@ -15,6 +26,7 @@ article h2 {
     p, h2 { margin: 0; padding: 0; }
 
     p.image img { max-height: 100px; max-width: 100%; }
+
     &:first-of-type {
       width: 50%;
       h2 { font-size: 16pt; }
@@ -25,31 +37,38 @@ article h2 {
   }
 }
 
-#all.feed {
-  // News!
-  #news-panes>* {
+// News pane
+#all.feed #news-panes>* {
+  & {
     padding: 80px 0 0 0;
-    overflow: hidden;
+    overflow: hidden; }
 
-    .feeds   { display: inline; }
-    .entries { overflow-y: auto; height: 100%; @extend .scroll; }
-    .entries { @include box-sizing(border-box); }
-  }
+  .view {
+    overflow-y: auto; height: 100%; @extend .scroll;
+    @include box-sizing(border-box); }
+ 
+  header {
+    background: white; position: absolute; top: 0; left: 0; width: 100%; 
+    @include box-sizing(border-box); height: 60px; padding: 0 20px; }
 
-  #news-panes>* header {
-    & { background: white; }
-    & { position: absolute; top: 0; left: 0; width: 100%; }
-    & { @include box-sizing(border-box); }
-    & { height: 60px; }
-    & { padding: 0 20px; }
-    h1 { border-bottom: solid 1px #aaa; }
+  h1 {
+    border-bottom: solid 1px #aaa; margin: 0; padding: 20px 0;
+    font-size: 20pt; font-family: 'PT Sans', sans-serif; line-height: 20px; 
+    height: 20px; overflow: hidden; }
 
-    h1 {
-      & { margin: 0; padding: 20px 0; }
-      & { font-size: 20pt; }
-      & { font-family: 'PT Sans', sans-serif; }
-      & { line-height: 20px; height: 20px; overflow: hidden; }
-      a { @extend a.non-link; }
-    }
+  h1 a {
+    @extend a.non-link; }
+
+  ul.views {
+    @include horiz-list;
+
+    position: absolute; top: 10px; right: 10px;
+
+    a {
+      background: #333; color: #fff; width: 30px; height: 30px; line-height: 
+      30px; display: inline-block; text-align: center; margin-left: 3px; }
+
+    a:hover, a.active {
+      text-decoration: none; background: $green; }
   }
 }

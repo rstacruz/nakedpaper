@@ -3,3 +3,7 @@ a.non-link {
   color: #333;
   &:hover { text-decoration: none; color: $blue; }
 }
+
+.hide {
+  display: none;
+}

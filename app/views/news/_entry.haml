@@ -3,5 +3,5 @@
     %a{href: R(:feed, entry.feed, :entry, entry)}!= entry.title
   - if entry.image?
     %p.image
-      %img{src: entry.image_url}
-  %p= entry.summary
+      %img.image{src: entry.image_url}
+  %p.summary= entry.summary

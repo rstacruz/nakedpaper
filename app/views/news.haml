@@ -2,7 +2,7 @@
 
 #all{class: area_class}
   #news-panes
-    #news
+    #news{class: "news-pane #{pane_class}"}
       != yield_content :content
 
   #feeds-c
