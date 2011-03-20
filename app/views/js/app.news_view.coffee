@@ -23,6 +23,8 @@ NN.FeedView = NN.View.extend
     @$el.attr 'class', "news-pane feed #{@classname}"
     @buildView()
 
+    @$view.hide().fadeIn('fast')
+
     # Activate the button
     @$views.find('.active').removeClass 'active'
     @$views.find("a[href=##{@classname}]").addClass 'active'
@@ -33,7 +35,8 @@ NN.FeedView = NN.View.extend
     view = @$ '.view'
     view.remove()
 
-  # Override me if you need to
+  # Override me if you need to.
+  # This is expected to set @$view
   buildView: ->
     @$view = $("<div class='view'>")
     @$view.html @template('entries': @entries())
@@ -53,6 +56,8 @@ NN.FeedView = NN.View.extend
 
   onSwitchView: (e) ->
     $target = $(e.target)
+    return false  if $target.is('.active')
+
     view    = $target.attr('href').substr(1)
     view    = @subtypes[view]
 
