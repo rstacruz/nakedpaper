@@ -4,20 +4,24 @@
 Setup
 -----
 
-### 1. Configuration
+Follow all these below.
+
+1. Configuration
+----------------
 
 You may set OAuth config via ENV variables:
 
-    heroku config:add OAUTH_KEY=consumer_key.com
-    heroku config:add OAUTH_SECRET=secret_here
-    # (or otherwise export these vars)
+    export OAUTH_KEY=consumer_key.com
+    export OAUTH_SECRET=secret_here
+    # ...that's `heroku config:add` in Heroku
 
 Or via a config file (see that file for details):
 
     cp  config/oauth.defaults.rb config/oauth.rb
     vim config/oauth.rb
 
-### 2. Development setup
+2. Development setup
+--------------------
 
 (Skip this section if you don't want to set up a local copy.)
 
@@ -36,7 +40,8 @@ Start:
     rake start   # or `rackup`, `thin start`, etc
     rake test
 
-### 3. Deployment
+3. Deployment
+-------------
 
 Do the configuration things, then run as a Rack app via Passenger/Heroku/etc.
 
