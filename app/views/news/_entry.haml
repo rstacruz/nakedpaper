@@ -1,11 +1,11 @@
 -# This is going to be a JS model... this is not presentational.
 -# See NN.FeedView (JS).
 
-%article
+%article{ data: { entry_id: entry.to_param }}
   %a.title{href: R(:feed, entry.feed, :entry, entry)}!= entry.title
   - if entry.image?
     %img.image{src: entry.image_url}
   %div.summary= entry.summary
-  %div.content= entry.content
+  %div.content!= entry.content
   %div.published= entry.published.to_i
   %a.external{href: entry.url}

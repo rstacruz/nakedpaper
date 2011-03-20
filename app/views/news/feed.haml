@@ -2,7 +2,7 @@
 - pane_class 'feed'
 
 - content_for :content do
-  %header
+  %header{data: { feed_id: @feed.to_param }}
     %h1
       %a{href: @feed.url, target: '_blank'}= @feed.title
 

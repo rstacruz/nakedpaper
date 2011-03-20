@@ -1,5 +1,27 @@
 NN.EntryView = NN.View.extend
   templates:
+    page:
+      _.template """
+        <div class='news-pane entry' data-all-class='entry'>
+          <header>
+            <div class='source'>
+              <a href="<%= feed.path() %>">
+                <%= feed.attributes.title %>
+              </a>
+            </div>
+            <h1>
+              <a href="<%= e.url %>" rel="nofollow" target="_blank">
+                <%= e.title %>
+              </a>
+            </h1>
+          </header>
+
+          <div class='contents'>
+            <%= e.content %>
+          </div>
+        </div>
+      """
+
     toolbar:
       _.template """
         <nav class="toolbar">
@@ -29,6 +51,8 @@ NN.EntryView = NN.View.extend
         </nav>
       """
 
+  model: null
+
   events:
     'click a.back':    'onBack'
     'click a.variant': 'onSwitchVariant'
@@ -36,15 +60,21 @@ NN.EntryView = NN.View.extend
   initialize: ->
     @$el   = $ @el
     @$body = $ "body"
-    @model = {
-      title: @$('header h1').text()
-      url:   @$('header h1 a').attr('href')
-    }
 
     @_spawnToolbar()
     @_cureLinks()
 
-    @$toolbar.find('a.source').attr 'href', @model.url
+    if @model
+      url = @model.attributes.url
+      @$toolbar.find('a.source').attr 'href', url  if url?
+
+  render: ->
+    pane = @templates.page
+      entry:    @model
+      feed:     @model.feed
+      e:        @model.attributes
+
+    NN.Page._loadPane $(pane)
 
   _spawnToolbar: ->
     @$toolbar = $ @templates.toolbar()

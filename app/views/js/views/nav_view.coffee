@@ -1,4 +1,4 @@
-NN.FeedsView = NN.View.extend
+NN.NavView = NN.View.extend
   initialize: ->
     @$el = $ @el
     @fetch()  if @isEmpty()
@@ -14,4 +14,4 @@ NN.FeedsView = NN.View.extend
       self.$el.html data
 
 $('#feeds').livequery ->
-  NN.Feeds = new NN.FeedsView el: this
+  NN.Nav = new NN.NavView el: this

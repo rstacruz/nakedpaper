@@ -1,6 +1,7 @@
 NN.Workspace = Backbone.Controller.extend
   routes:
-    '*path':   'load'
+    'feed/:feed/entry/:entry': 'entry'
+    '*path': 'load'
 
   load: (path) ->
     NN.loader.start()
@@ -26,11 +27,22 @@ NN.Workspace = Backbone.Controller.extend
 
         # Push it hidden
         $news.hide().html $data.find("#news").html()
-        $("#news-panes").append $news
-
         @_loadPane $news
 
+  entry: (feed_id, entry_id) ->
+    feed  = NN.Feed.find(feed_id)
+    entry = feed.entry(entry_id)
+
+    # This should be `pass`...
+    return true  unless entry.exists?
+
+    view = new NN.EntryView(model: entry)
+    view.render()
+
   _loadPane: ($news) ->
+    # Add it
+    $("#news-panes").append $news
+
     # Now lets transition
     $("#news").hide().removeAttr('id')
     $("#all").attr 'class', $news.attr('data-all-class')
@@ -39,5 +51,18 @@ NN.Workspace = Backbone.Controller.extend
 
     $(document).trigger 'after_navigate'
 
-new NN.Workspace
+NN.Page = new NN.Workspace
 Backbone.history.start()
+
+# Model fetchers
+$('.news-pane.feed').livequery ->
+  id    = $(this).find('header').attr('data-feed_id')
+  title = $(this).find('header h1').text()
+
+  # Build the model
+  model = NN.Feed.find(id)
+  model._updateEntries $(this).find('article')
+  model.set title: title
+
+  # Build the view
+  model.view = new NN.FeedView(el: this, model: model)

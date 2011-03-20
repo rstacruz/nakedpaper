@@ -50,8 +50,10 @@ if pushSupport and Backbone? and Backbone.History?
       # Such a nice assignment/check in CoffeeScript...
       fragment = @fragment = fragment ? @getFragment()
       # We skip all the other stuff Backbone does for hashes and go straight to the routes
-      _.each @handlers, (handler) ->
-        if handler.route.test(fragment) then handler.callback(fragment)  
+      _.any @handlers, (handler) ->
+        if handler.route.test(fragment)
+          handler.callback(fragment)
+          return true
 
     # This has been modified to allow the browser history to be replaced by passing true for replace.
     # This is handy for times you need to patch the history from inside the controller routes or somewhere

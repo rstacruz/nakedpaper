@@ -55,7 +55,12 @@ class JsFiles
   #     %script{:src => href}
   #
   def hrefs
-    @files.map { |f| @options[:prefix] + File.basename(f, '.*') + ".js?#{File.mtime(f).to_i}" }
+    @files.map { |f|
+      path = f.dup
+      path.gsub! /\.[^\.]*$/, ''
+      path.gsub! /^#{ @options[:file_prefix] }/, ''
+      File.join @options[:prefix], path + ".js?#{File.mtime(f).to_i}"
+    }
   end
 
   # Returns the <script> tags for the development version.

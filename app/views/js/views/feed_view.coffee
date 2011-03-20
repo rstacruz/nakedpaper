@@ -1,6 +1,11 @@
+# This is spawned by the NN.Feed model
 NN.FeedView = NN.View.extend
   events:
     'click .views a':  'onSwitchView'
+
+  # The model (NN.Feed instance)
+  # This is always set, don't worry
+  model: null
 
   initialize: ->
     @$el      = $ @el
@@ -43,18 +48,9 @@ NN.FeedView = NN.View.extend
 
     @$el.append @$view
 
-  # Gets the entries model.
+  # Gets the entries model. [NN.Entry[]]
   entries: ->
-    _.map @$entries.find('article'), ($e) ->
-      $e    = $($e)
-      entry =
-        href:      $e.find('>.title').attr('href')
-        url:       $e.find('>.external').attr('href')
-        title:     $e.find('>.title').html()
-        image:     $e.find('>.image').attr('src')
-        summary:   $e.find('>.summary').html()
-        content:   $e.find('>.content').html()
-        published: new Date(+$e.find('>.published').html())
+    @model.entries_list()
 
   onSwitchView: (e) ->
     $target = $(e.target)
@@ -71,7 +67,8 @@ NN.LineFeedView =
 
   template:
     _.template """
-    <% _.each(entries, function(e) { %>
+    <% _.each(entries, function(entry) { %>
+      <% e = entry.attributes; %>
       <article>
         <a href="<%= e.href %>">
           <span class="date">
@@ -97,7 +94,8 @@ NN.CompactFeedView =
 
   template:
     _.template """
-    <% _.each(entries, function(e) { %>
+    <% _.each(entries, function(entry) { %>
+      <% e = entry.attributes; %>
       <article>
         <a href="<%= e.href %>">
           <% if (e.image) { %>
@@ -112,6 +110,3 @@ NN.CompactFeedView =
       </article>
     <% }); %>
     """
-
-$('.news-pane.feed').livequery ->
-  new NN.FeedView el: this

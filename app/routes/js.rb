@@ -10,7 +10,7 @@ class Main
     js.compressed
   end
 
-  get '/js/:name.js' do |name|
+  get '/js/*.js' do |name|
     fname = Dir[Main.root("app/views/js/#{name}.{js,coffee}")].first  or not_found
 
     content_type :js
