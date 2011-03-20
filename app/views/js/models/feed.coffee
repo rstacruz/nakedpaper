@@ -7,12 +7,14 @@ NN.Feed = NN.Model.extend
 
   # Fetches entries from the DOM.
   _updateEntries: ($articles) ->
+    @entries = {}
+
     _.each $articles, ($e) =>
       $e    = $($e)
       id    = $e.attr('data-entry_id')
 
-      entry = @entry(id)
-      entry.feed = this
+      entry = new NN.Entry(id: id)
+      entry.feed = self
       entry.set
         href:      $e.find('>.title').attr('href')
         url:       $e.find('>.external').attr('href')
@@ -24,8 +26,8 @@ NN.Feed = NN.Model.extend
 
       @entries[id] = entry
 
-  entries_list: ->
-    _.map @entries, (a) -> a
+  getEntriesList: ->
+    _.map @entries, (value) -> value
 
   path: ->
     "/feed/#{@id}"

@@ -10,6 +10,8 @@ NN.FeedView = NN.View.extend
   classname: 'compact'
 
   initialize: ->
+    console.log "Init from #{@model.id}"
+
     @$el      = $ @el
     @$views   = @$ '.views'
 
@@ -28,11 +30,6 @@ NN.FeedView = NN.View.extend
   # Switches to a given view.
   # @example  news.switchTo NN.LineFeedView
   switchTo: (view) ->
-    if @classname == view.classname and @$view
-      alert 'success'
-      @$view.ani 'fade in'
-      return true
-
     @destroyView()
 
     # Switch
@@ -56,13 +53,13 @@ NN.FeedView = NN.View.extend
   # This is expected to set @$view
   buildView: ->
     @$view = $("<div class='view'>")
-    @$view.html @template('entries': @entries())
+    @$view.html @template('entries': @getEntries())
 
     @$el.append @$view
 
   # Gets the entries model. [NN.Entry[]]
-  entries: ->
-    @model.entries_list()
+  getEntries: ->
+    @model.getEntriesList()
 
   onSwitchView: (e) ->
     $target = $(e.target)

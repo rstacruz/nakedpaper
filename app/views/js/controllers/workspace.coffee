@@ -67,9 +67,9 @@ $('.news-pane.feed').livequery ->
   title = $(this).find('header h1').text()
 
   # Build the model
-  model = NN.Feed.find(id)
-  model._updateEntries $(this).find('article')
-  model.set title: title
+  feed = NN.Feed.find(id)
+  feed.set title: title
+  feed._updateEntries $(this).find('article')
 
   # Build the view
-  model.view ||= new NN.FeedView(el: this, model: model)
+  feed.view ||= new NN.FeedView(el: this, model: feed)
