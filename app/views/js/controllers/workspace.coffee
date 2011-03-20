@@ -12,7 +12,8 @@ NN.Workspace = Backbone.Controller.extend
 
     if exists
       # Back
-      @_loadPane $news
+      console.log "Cache hit for /#{path}"
+      @_switchPane $news
 
     else
       # Prepare it
@@ -42,7 +43,9 @@ NN.Workspace = Backbone.Controller.extend
   _loadPane: ($news) ->
     # Add it
     $("#news-panes").append $news
+    @_switchPane $news
 
+  _switchPane: ($news) ->
     # Now lets transition
     $("#news").hide().removeAttr('id')
     $("#all").attr 'class', $news.attr('data-all-class')
@@ -53,6 +56,10 @@ NN.Workspace = Backbone.Controller.extend
 
 NN.Page = new NN.Workspace
 Backbone.history.start()
+
+$ ->
+  $("#news").attr 'data-source', window.location.pathname
+  $("#news").attr 'data-all-class', $("#all").attr('class')
 
 # Model fetchers
 $('.news-pane.feed').livequery ->
@@ -65,4 +72,4 @@ $('.news-pane.feed').livequery ->
   model.set title: title
 
   # Build the view
-  model.view = new NN.FeedView(el: this, model: model)
+  model.view ||= new NN.FeedView(el: this, model: model)

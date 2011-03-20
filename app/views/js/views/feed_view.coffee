@@ -7,9 +7,10 @@ NN.FeedView = NN.View.extend
   # This is always set, don't worry
   model: null
 
+  classname: 'compact'
+
   initialize: ->
     @$el      = $ @el
-    @$entries = @$ '.entries'
     @$views   = @$ '.views'
 
     @subtypes =
@@ -18,9 +19,20 @@ NN.FeedView = NN.View.extend
 
     @switchTo @subtypes['compact']
 
+  # The views toolbar
+  $views: undefined
+
+  # The scrollable area
+  $view: undefined
+
   # Switches to a given view.
   # @example  news.switchTo NN.LineFeedView
   switchTo: (view) ->
+    if @classname == view.classname and @$view
+      alert 'success'
+      @$view.ani 'fade in'
+      return true
+
     @destroyView()
 
     # Switch
@@ -28,8 +40,7 @@ NN.FeedView = NN.View.extend
     @$el.attr 'class', "news-pane feed #{@classname}"
     @buildView()
 
-    # Damn slow for big feeds
-    # @$view.ani 'fade in'
+    @$view.ani 'fade in'
 
     # Activate the button
     @$views.find('.active').removeClass 'active'
