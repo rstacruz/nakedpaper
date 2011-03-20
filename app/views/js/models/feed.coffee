@@ -14,7 +14,7 @@ NN.Feed = NN.Model.extend
       id    = $e.attr('data-entry_id')
 
       entry = new NN.Entry(id: id)
-      entry.feed = self
+      entry.feed = this
       entry.set
         href:      $e.find('>.title').attr('href')
         url:       $e.find('>.external').attr('href')
