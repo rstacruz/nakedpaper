@@ -54,6 +54,8 @@ article h2 {
     margin: 10px 0;
     text-overflow: ellipsis; overflow: hidden;
 
+    a { display: block; font-weight: normal; color: #333; }
+
     p, h2 { margin: 0; padding: 0; }
 
     &:first-of-type {
@@ -63,14 +65,19 @@ article h2 {
     }
 
     h2 { margin-bottom: 5px; }
-    h2 a { color: #111; }
-    h2 a:hover { text-decoration: none; color: $blue; }
+    h2 { color: #111; }
 
-    a.image {
+    span.image {
       display: block; height: 70px;
       @extend .pseudo-image;
       margin-top: 1px;
       margin-bottom: 10px;
+    }
+
+    a:hover {
+      text-decoration: none;
+      h2 { text-decoration: none; color: $blue; }
+      span.image { border-color: $green; }
     }
   }
 }

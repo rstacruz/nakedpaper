@@ -99,18 +99,16 @@ NN.CompactFeedView =
     _.template """
     <% _.each(entries, function(e) { %>
       <article>
-        <% if (e.image) { %>
-          <a class="image" href="<%= e.href %>" style="background-image: 
-          url(<%= e.image %>);"></a>
-        <% } %>
+        <a href="<%= e.href %>">
+          <% if (e.image) { %>
+            <span class="image" href="<%= e.href %>" style="background-image: 
+            url(<%= e.image %>);"></span>
+          <% } %>
 
-        <h2>
-          <a href="<%= e.href %>">
-            <%= e.title %>
-          </a>
-        </h2>
+          <h2><%= e.title %></h2>
 
-        <p class="summary"><%= e.summary %></p>
+          <div class="summary"><%= e.summary %></div>
+        </a>
       </article>
     <% }); %>
     """
