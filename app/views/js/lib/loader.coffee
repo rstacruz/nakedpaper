@@ -1,11 +1,18 @@
 NN.loader =
+  count: 0
+
   start: ->
+    @count++
     $("body").addClass 'loading'
     @$loader().show()
 
   stop: ->
-    $("body").removeClass 'loading'
-    @$loader().hide()
+    @count--
+
+    if @count <= 0
+      @count = 0
+      $("body").removeClass 'loading'
+      @$loader().fadeOut()
 
   $loader: ->
     return $("#loading")  if ($("#loading").length)

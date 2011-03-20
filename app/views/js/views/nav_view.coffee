@@ -7,11 +7,13 @@ NN.NavView = NN.View.extend
     $.trim(@$el.html()) == ''
  
   fetch: ->
-    self = this
-    @$el.html 'Fetching data...'
+    NN.loader.start()
 
-    $.get '/_feeds', (data) ->
-      self.$el.html data
+    $.get '/_feeds', (data) =>
+      NN.loader.stop()
+      @$el.html data
+      @$el.ani('fade in')
+
 
 $('#feeds').livequery ->
   NN.Nav = new NN.NavView el: this
