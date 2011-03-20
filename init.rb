@@ -3,10 +3,19 @@ $:.unshift *Dir["./vendor/*/*/lib"]
 require "bundler"
 Bundler.require :default
 
+# Plugins
 require "rtopia"
 require "jsfiles"
 require "user_agent"
-require "greader"
+
+begin
+  require "greader"
+rescue LoadError => e
+  puts "*** Unable to load the greader gem."
+  puts "    See the README for details."
+  puts "    (#{e.message})"
+  exit
+end
 
 class Main < Sinatra::Base
   set      :root, lambda { |*args| File.join(File.dirname(__FILE__), *args) }
