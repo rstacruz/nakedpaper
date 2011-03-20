@@ -3,7 +3,9 @@
 $reset-font: 'helvetica neue', helvetica, arial, helvetica, sans-serif;
 @include ae-reset;
 
-body { background: #cacac4; }
+$bg: #cacac4;
+
+body { background: $bg; }
 
 @import 'layout';
 

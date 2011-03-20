@@ -2,6 +2,9 @@
 - pane_class 'entry'
 
 - content_for :content do
+  %nav.toolbar
+    %a.back{href: R(:feed, @entry.feed)}!= "&larr;"
+
   %header
     %h1
       %a{href: @entry.url, target: '_blank'}!= @entry.title

@@ -7,3 +7,38 @@ a.non-link {
 .hide {
   display: none;
 }
+
+// For readable sections (like articles)
+.readable {
+  blockquote, pre,
+  p, ul, ol, li, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: georgia, sans-serif;
+    margin: 40px 0 20px 0;
+    color: $red;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #ccc;
+  }
+
+
+  code, pre {
+    font-family: 'droid sans mono', monaco, monospace;
+    background: #eee; text-shadow: 1px 1px 0 $white90; color: #333;
+    border: solid 1px $black10;
+    @include border-radius(2px); padding: 0 3px;
+  }
+
+  pre {
+    @include border-radius(4px); padding: 10px; background: #eee; overflow: auto; font-size: 10pt;
+    @include shadow(2px 2px 0 $black10);
+    line-height: 1.5;
+    code { background: none; border: 0; padding: 0; }
+  }
+
+  p > img:first-child:last-child { display: block; margin: 0 auto; }
+  p > a:first-child:last-child > img:first-child:last-child { display: block; margin: 0 auto; }
+}
