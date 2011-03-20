@@ -8,34 +8,56 @@
 
   #news-panes { height: auto; }
 
-  #news-panes>* {
-    margin: 0 auto; width: 65%; min-width: 500px;
-    font-size: 1.15em; padding: 10px 80px; line-height: 1.7;
-    padding-bottom: 80px;
-  }
-
-  @extend .readable;
-
   #aux {
-    display: none;
-  }
+    display: none; }
+}
 
-  nav.toolbar {
-    position: fixed; top: 30px; left: 30px;
-    a {
-      background: #333; color: #fff; display: block;
-      text-align: center;
-      width: 50px; height: 50px; line-height: 50px; }
+// The left side thing
+#all.entry nav.toolbar {
+  & {
+    position: fixed; top: 0; left: 0; width: 56px; height: 100%;
+    @include box-sizing(border-box);
+    padding: 8px 2px 2px 2px;
+    background: $black05; border-right: solid 1px $black05; }
 
-    a:hover {
-      text-decoration: none; background: $red; }
-  }
+  a {
+    text-align: center; display: block; color: #888; text-shadow: 1px 1px 0 $white30;
+    border-top: solid 1px $black05; font-size: 10pt;
+    font-family: $reset-font;
+    width: 50px; height: 40px; line-height: 40px; }
+
+  a:hover {
+    background: #333; color: #fff; text-shadow: 1px 1px 0 $black30;
+    text-decoration: none; }
+
+  a.back {
+    font-weight: normal;
+    background: #333; color: #fff; height: 50px; line-height: 50px; font-size: 22pt; }
+
+  .size {
+    font-family: georgia, serif; font-weight: normal; }
+
+  .size-small {
+    font-size: 7pt; }
+
+  .size-medium {
+    font-size: 9pt; }
+
+  .size-large {
+    font-size: 13pt; }
+
+  nav {
+    margin-bottom: 50px; }
 }
 
 .news-pane.entry {
   & {
-    border: solid 6px $bg*0.9;
-  }
+    border: solid 6px $bg*0.9; }
+
+  & {
+    margin: 0 auto; width: 65%; min-width: 500px;
+    font-size: 1.15em; padding: 10px 80px; line-height: 1.7;
+    padding-bottom: 80px; @extend .readable; }
 
   header {
     margin: 0 0 40px 0;
@@ -57,5 +79,26 @@
     font-size: 25pt; line-height: 1.3; 
     margin: 30px 0; 
     a { @extend a.non-link; }
+  }
+}
+
+// Variants
+body {
+  &.size-small .news-pane.entry { font-size: 9pt; }
+  &.size-large .news-pane.entry { font-size: 12pt; }
+
+  &.font-serif .news-pane.entry { font-family: goudy, serif; }
+
+  &.color-dark {
+    //background: #555;
+  }
+
+  &.color-dark .news-pane.entry {
+    border-color: #777;
+    background: #222;
+    & { color: #ddd; }
+    h1, h1 a, h1 a:hover { color: #fff; }
+    a { color: $blue; }
+    header .source { background: #444; }
   }
 }
