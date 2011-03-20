@@ -1,0 +1,79 @@
+.in, .out {
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 300ms;
+}
+
+.slide.in          { -webkit-animation-name: slideinfromleft; }
+.slide.out         { -webkit-animation-name: slideouttoleft; }
+.slide.in.reverse  { -webkit-animation-name: slideinfromleft; }
+.slide.out.reverse { -webkit-animation-name: slideouttoleft; }
+
+.glide.in          { -webkit-animation-name: glideinfrombottom; }
+.glide.out         { -webkit-animation-name: glideouttobottom; }
+
+@-webkit-keyframes slideinfromtop {
+  from { -webkit-transform: translateY(-100%); opacity: 0; }
+  to   { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@-webkit-keyframes slideinfrombottom {
+  from { -webkit-transform: translateY(100%); }
+  to   { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@-webkit-keyframes slideouttobottom {
+  from { -webkit-transform: translateY(0); opacity: 1; }
+  to   { -webkit-transform: translateY(100%); opacity: 0; }
+}
+
+@-webkit-keyframes slideouttotop {
+  from { -webkit-transform: translateY(0); opacity: 1; }
+  to   { -webkit-transform: translateY(-100%); opacity: 0; }
+}
+
+/* .. */
+
+@-webkit-keyframes glideinfrombottom {
+  from { -webkit-transform: translateY(4%); opacity: 0; }
+  to   { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@-webkit-keyframes glideouttobottom {
+  from { -webkit-transform: translateY(0); opacity: 1; }
+  to   { -webkit-transform: translateY(4%); opacity: 0; }
+}
+
+/* .. */
+
+@-webkit-keyframes slideinfromleft {
+  from { -webkit-transform: translateX(-100%); opacity: 1; }
+  to   { -webkit-transform: translateX(0); opacity: 1; }
+}
+
+@-webkit-keyframes slideinfromright {
+  from { -webkit-transform: translateX(100%); }
+  to   { -webkit-transform: translateX(0); opacity: 1; }
+}
+
+@-webkit-keyframes slideouttoright {
+  from { -webkit-transform: translateX(0); opacity: 1; }
+  to   { -webkit-transform: translateX(100%); opacity: 1; }
+}
+
+@-webkit-keyframes slideouttoleft {
+  from { -webkit-transform: translateX(0); opacity: 1; }
+  to   { -webkit-transform: translateX(-100%); opacity: 1; }
+}
+
+.fade.in { z-index: 10; -webkit-animation-name: fadein; }
+.fade.out { z-index: 0; -webkit-animation-name: fadeout; }
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@-webkit-keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}

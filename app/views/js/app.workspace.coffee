@@ -2,9 +2,6 @@ NN.Workspace = Backbone.Controller.extend
   routes:
     '*path':   'load'
 
-  options:
-    transitionSpeed: 'fast'
-
   load: (path) ->
     NN.loader.start()
 
@@ -38,7 +35,7 @@ NN.Workspace = Backbone.Controller.extend
     $("#news").hide().removeAttr('id')
     $("#all").attr 'class', $news.attr('data-all-class')
     $news.attr 'id', 'news'
-    $news.fadeIn(@options.transitionSpeed)
+    $news.ani('fade in').show()
 
     $(document).trigger 'after_navigate'
 

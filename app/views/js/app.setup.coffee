@@ -11,5 +11,9 @@ $(document).ajaxError (e, xhr, settings, exception) ->
 
   $(document).trigger 'after_navigate'
 
+$('[title]').livequery ->
+  $(this).tipTip
+    delay: 0, edgeOffset: 5, fadeIn: 80, maxWidth: "300px"
+
 $.ajaxSetup
   timeout: 15000

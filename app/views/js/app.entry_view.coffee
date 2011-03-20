@@ -49,6 +49,10 @@ NN.EntryView = NN.View.extend
   _spawnToolbar: ->
     @$toolbar = $ @templates.toolbar()
     @$el.append @$toolbar
+    @$toolbar.ani 'slide in'
+
+    @$toolbar.find('a').tipTip
+      delay: 0, edgeOffset: 5, fadeIn: 80, maxWidth: "300px", defaultPosition: 'right'
 
   # Make all links open in a new window.
   _cureLinks: ->
