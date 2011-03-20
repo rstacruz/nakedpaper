@@ -7,7 +7,7 @@ body { background: #cacac4; }
 
 @import 'layout';
 
-#all { @include shadow(inset 0 5px 0 #333, inset 0 -50px 0 $black10); }
+#all { @include shadow(inset 0 5px 0 #333, inset 0 -50px 0 $black05); }
 #all.entry { @include shadow(inset 0 5px 0 $maroon); }
 
 // The card

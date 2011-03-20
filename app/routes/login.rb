@@ -11,7 +11,7 @@ class Main
 
   post '/login' do
     if authenticate(params)
-      redirect '/'
+      redirect next_url
     else
       session[:error] = "Try again."
       redirect R(:login)
@@ -23,15 +23,15 @@ class Main
     token = omni['extra']['access_token']
 
     if authenticate('email' => omni['uid'], 'access_token' => token)
-      redirect '/'
+      redirect next_url
     else
-      session[:error] = "OAuth failed."
+      session[:error] = "OAuth failed (1)."
       redirect R(:login)
     end
   end
 
   get '/auth/failure' do
-    session[:error] = "OAuth failed."
+    session[:error] = "OAuth failed (2)."
     redirect R(:login)
   end
 end

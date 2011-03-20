@@ -13,8 +13,18 @@ module LoginHelpers
     ! client.nil?
   end
 
+  def next_url
+    params[:next] || '/'
+  end
+
   def require_login
-    redirect R(:login, next: request.fullpath)  unless logged_in?
+    return true  if logged_in?
+
+    if request.xhr?
+      status 401
+    else 
+      redirect R(:login, next: request.fullpath)
+    end
   end
 
   def client
