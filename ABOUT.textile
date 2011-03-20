@@ -2,17 +2,23 @@ Nakedpaper has been lovingly built by the boys of Sinefunc.com.
 
 h3. Todo
 
+* Pagination
+* Prev/next links for entries
 * Title changing
-* Better list view
+* Entries F55 and Camille's blog isn't working right
+* Entry dates
+* Logout when 401'ing or something -- don't know how to fix this yet
+
+h3. Less-than-critical to do
+
+* Growl
 * Icons for toolbar
 * Refresh button
-* Entry dates
 * Unread counts
 * Tag view
 * Hide special tags ('blogger-following' etc)
-* Image zoom
+* Lightbox mage zoom
 * Image grid view
-* Tiptip
 
 h3. Further down
 
@@ -25,3 +31,5 @@ h3. Done:
 * About page
 * Entry view: Adjust width/font size/etc
 * Themes (sorta)
+* Better list view
+* Tiptip

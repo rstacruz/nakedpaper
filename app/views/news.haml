@@ -2,7 +2,7 @@
 
 #all{class: area_class}
   #news-panes
-    #news{class: "news-pane #{pane_class}"}
+    #news{class: "news-pane #{pane_class}", title: title}
       != yield_content :content
 
   - if logged_in?
