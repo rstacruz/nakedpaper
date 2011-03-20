@@ -8,15 +8,20 @@ h3. Todo
 * Refresh button
 * Entry dates
 * Unread counts
-* Entry view: Adjust width/font size/etc
 * Tag view
-* Themes
+* Hide special tags ('blogger-following' etc)
+* Image zoom
+* Image grid view
+* Tiptip
 
 h3. Further down
 
 * Read/unread tracking
+* Star
 
 h3. Done:
 
 * Logout
 * About page
+* Entry view: Adjust width/font size/etc
+* Themes (sorta)
