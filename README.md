@@ -1,7 +1,7 @@
 # Nakedpaper
 #### Google Reader interface.
 
-### Configure
+## Configuration
 
 You may set OAuth config via ENV variables:
 
@@ -14,7 +14,7 @@ Or via a config file (see that file for details):
     cp  config/oauth.defaults.rb config/oauth.rb
     vim config/oauth.rb
 
-### Development setup
+## Development setup
 
 Do the configuration things above, then do the Bundler dance:
 
@@ -28,9 +28,9 @@ add the GReader gem somewhere in vendor/.
 
 Start:
 
-    rake start   # or rackup/thin start/unicorn/etc
+    rake start   # or `rackup`, `thin start`, etc
     rake test
 
-### Deployment
+## Deployment
 
 Do the configuration things, then run as a Rack app.
