@@ -27,6 +27,12 @@ a.non-link {
     border-bottom: solid 1px #ccc;
   }
 
+  img {
+    max-width: 95%;
+    padding: 2px; background: $black05; border: solid 1px #ccc; }
+
+  a:hover img {
+    background-color: $green; }
 
   code, pre {
     font-family: 'droid sans mono', monaco, monospace;
