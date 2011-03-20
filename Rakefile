@@ -11,6 +11,4 @@ task(:irb) {
   system "#{irb} -r./init.rb"
 }
 
-
-task :default => :test do
-end
+task :default => :test

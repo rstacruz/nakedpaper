@@ -1,0 +1,9 @@
+// The card
+.news-pane {
+  height: 100%; position: relative;
+  background: white; padding: 20px;
+  @include box-sizing(border-box);
+  @include shadow(0 2px 3px $black20);
+  //@include border-bottom-radius(2px);
+}
+
