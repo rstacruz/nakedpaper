@@ -33,7 +33,7 @@ Do the configuration things above, then do the Bundler dance:
 If the GReader gem is actively being developed alongside this,
 add the GReader gem somewhere in vendor/.
 
-    ln -s ~/Projects/greader vendor/gems/greader-dev
+    ln -s ~/Projects/greader vendor/gems/greader
 
 Start:
 
