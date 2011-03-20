@@ -1,19 +1,22 @@
-$:.unshift *Dir["./vendor/*/*/lib"]
+ENV['RACK_ENV'] ||= 'development'
 
+# Bundler
 require "bundler"
-Bundler.require :default
+Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 # Plugins
+$:.unshift *Dir["./vendor/plugins/*/lib"]
 require "rtopia"
 require "jsfiles"
 require "user_agent"
 
-begin
-  require "greader"
-rescue LoadError => e
+# Explicitly use a development version of greader
+greader_path = './vendor/gems/greader/lib/greader.rb'
+require greader_path  if File.file? greader_path
+
+unless defined?(GReader)
   puts "*** Unable to load the greader gem."
   puts "    See the README for details."
-  puts "    (#{e.message})"
   exit
 end
 

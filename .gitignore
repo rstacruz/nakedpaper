@@ -3,6 +3,7 @@
 ! /vendor/.gitignore
 /log
 /logs
+/tmp
 
 # Docs
 .yardoc
@@ -10,4 +11,5 @@ doc
 
 # Others
 .sass-cache
+.bundle
 .rvmrc

@@ -1,10 +1,12 @@
-require File.expand_path("../helper", File.dirname(__FILE__))
+require File.expand_path("../../story_helper", __FILE__)
 
-# As a user I can view the site homepage
-story do
-  scenario "No query string" do
-    visit "/"
+class SiteTest < StoryTest
+  test "hello" do
+    visit '/'
+    assert current_path == '/login'
+  end
 
-    assert page.has_content?("Yo!")
+  test "login" do
+    login!
   end
 end

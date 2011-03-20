@@ -9,11 +9,12 @@ gem "maruku"
 gem "rest-client", require: "rest_client"
 gem "nokogiri"
 gem "coffee-script", require: "coffee_script"
-gem "omniauth"
+gem "oa-oauth"
 gem "RedCloth", require: "redcloth"
 
 group :test do
   gem "contest"
+  gem "capybara"
 end
 
 # gem "greader", git: "git://github.com/rstacruz/greader.git"

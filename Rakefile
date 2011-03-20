@@ -1,8 +1,5 @@
 task(:test) {
-  $:.unshift File.join(File.dirname(__FILE__), "test")
-
-  require 'cutest'
-  Cutest.run(Dir['./test/**/*_test.rb'])
+  Dir['./test/**/*_test.rb'].each { |f| load f }
 }
 
 task(:start) {
@@ -14,3 +11,6 @@ task(:irb) {
   system "#{irb} -r./init.rb"
 }
 
+
+task :default => :test do
+end

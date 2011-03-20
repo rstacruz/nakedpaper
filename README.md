@@ -1,7 +1,10 @@
 # Nakedpaper
 #### Google Reader interface.
 
-## Configuration
+Setup
+-----
+
+### 1. Configuration
 
 You may set OAuth config via ENV variables:
 
@@ -14,7 +17,9 @@ Or via a config file (see that file for details):
     cp  config/oauth.defaults.rb config/oauth.rb
     vim config/oauth.rb
 
-## Development setup
+### 2. Development setup
+
+(Skip this section if you don't want to set up a local copy.)
 
 Do the configuration things above, then do the Bundler dance:
 
@@ -31,6 +36,6 @@ Start:
     rake start   # or `rackup`, `thin start`, etc
     rake test
 
-## Deployment
+## 3. Deployment
 
-Do the configuration things, then run as a Rack app.
+Do the configuration things, then run as a Rack app via Passenger/Heroku/etc.

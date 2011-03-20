@@ -16,9 +16,9 @@
 
     %form{action: '/login', method: 'post'}
       %p
-        %input{name: 'email', placeholder: "Google email"}
+        %input{id: 'email', name: 'email', placeholder: "Google email"}
       %p
-        %input{type: 'password', name: 'password', placeholder: "Password"}
+        %input{id: 'password', type: 'password', name: 'password', placeholder: "Password"}
 
       %p.submit
         %button{type: 'submit'}
