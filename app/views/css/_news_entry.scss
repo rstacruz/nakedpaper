@@ -126,8 +126,9 @@
 
 // Variants
 body {
-  &.size-small .news-pane.entry { font-size: 9pt; }
-  &.size-large .news-pane.entry { font-size: 12pt; }
+  .news-pane.entry { font-size: 12pt; }
+  &.size-small .news-pane.entry { font-size: 10pt; }
+  &.size-large .news-pane.entry { font-size: 14pt; }
 
   &.font-serif .news-pane.entry {
     font-family: 'palatino linotype', georgia, serif; }
