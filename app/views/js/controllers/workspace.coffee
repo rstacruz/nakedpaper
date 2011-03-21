@@ -58,10 +58,13 @@ class NN.Workspace extends Backbone.Controller
 
   _switchPane: ($news) ->
     # Now lets transition
+    $('body').scrollTop 0
     $("#news").hide().removeAttr('id')
     $("#all").attr 'class', $news.attr('data-all-class')
     $news.attr 'id', 'news'
     $news.show()
+
+    $('body').scrollTop 0
 
 NN.Page = new NN.Workspace
 Backbone.history.start()
