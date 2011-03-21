@@ -3,9 +3,10 @@ NN.Workspace = Backbone.Controller.extend
     'feed/:feed/entry/:entry': 'entry'
     '*path': 'load'
 
-  load: (path) ->
-    NN.loader.start()
+  # Whatever the current request is
+  request: null
 
+  load: (path) ->
     # If it already exists, use it
     $news  = $("#news-panes > [data-source='/#{path}']")
     exists = !! $news.length
@@ -17,7 +18,7 @@ NN.Workspace = Backbone.Controller.extend
 
     else
       # Prepare it
-      $.get '/'+path, (data) =>
+      @get '/'+path, (data) =>
         $data = $("<div>").html(data)
 
         # Build it and put some metadata
@@ -29,6 +30,15 @@ NN.Workspace = Backbone.Controller.extend
         # Push it hidden
         $news.hide().html $data.find("#news").html()
         @_loadPane $news
+
+  # Issues an AJAX request.
+  get: (path, callback) ->
+    NN.loader.start()
+
+    @request.abort()  if @request?
+    @request = $.get path, success: (data) =>
+      callback data
+      $(document).trigger 'after_navigate'  # does loader.stop()
 
   entry: (feed_id, entry_id) ->
     feed  = NN.Feed.find(feed_id)
@@ -51,8 +61,6 @@ NN.Workspace = Backbone.Controller.extend
     $("#all").attr 'class', $news.attr('data-all-class')
     $news.attr 'id', 'news'
     $news.show()
-
-    $(document).trigger 'after_navigate'
 
 NN.Page = new NN.Workspace
 Backbone.history.start()
