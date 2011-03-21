@@ -21,7 +21,7 @@ NN.Feed = NN.Model.extend
         title:     $e.find('>.title').html()
         image:     $e.find('>.image').attr('src')
         summary:   $e.find('>.summary').html()
-        content:   $e.find('>.content').html()
+        content:   $e.find('>.content').text()
         published: new Date(+$e.find('>.published').text())
 
       @entries[id] = entry
