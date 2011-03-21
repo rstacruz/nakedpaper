@@ -3,7 +3,6 @@ Nakedpaper has been lovingly built by the boys of Sinefunc.com.
 h3. Todo
 
 * Pagination
-* Prev/next links for entries
 * Title changing
 * Entries F55 and Camille's blog isn't working right
 * Entry dates
@@ -33,3 +32,5 @@ h3. Done:
 * Themes (sorta)
 * Better list view
 * Tiptip
+* Superfast entry pages
+* Prev/next links for entries
