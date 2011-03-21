@@ -2,7 +2,8 @@ NN.EntryView = NN.View.extend
   templates:
     page:
       _.template """
-        <div class='news-pane entry' data-all-class='entry'>
+        <div class='news-pane entry' data-all-class='entry' 
+        data-dynamic='true'>
           <header>
             <div class='source'>
               <a href="<%= feed.path() %>">
@@ -29,9 +30,12 @@ NN.EntryView = NN.View.extend
             <a title="Back" href="#back" class="back">&lsaquo;</a>
           </nav>
 
-          <nav>
-            <a title="View source" href="#source" target="_blank" class="source" rel="nofollow">Src</a>
-          </nav>
+          <% if (href) { %>
+            <nav>
+              <a title="View source" href="<%= href %>" target="_blank"   
+              class="source" rel="nofollow">Src</a>
+            </nav>
+          <% } %>
 
           <nav>
             <a title="Small font" href="#size/small" class="variant size size-small">Aa</a>
@@ -51,8 +55,6 @@ NN.EntryView = NN.View.extend
         </nav>
       """
 
-  model: null
-
   events:
     'click a.back':    'onBack'
     'click a.variant': 'onSwitchVariant'
@@ -64,20 +66,23 @@ NN.EntryView = NN.View.extend
     @_spawnToolbar()
     @_cureLinks()
 
-    if @model
-      url = @model.attributes.url
-      @$toolbar.find('a.source').attr 'href', url  if url?
-
   render: ->
-    pane = @templates.page
+    @el = @templates.page
       entry:    @model
       feed:     @model.feed
       e:        @model.attributes
 
-    NN.Page._loadPane $(pane)
+    @$el = $ @el
+
+    @_spawnToolbar()
+    NN.Page._loadPane @$el
 
   _spawnToolbar: ->
-    @$toolbar = $ @templates.toolbar()
+    href = @$el.find('h1 a').attr('href')
+
+    @$toolbar = $ @templates.toolbar
+      href:  href
+
     @$el.append @$toolbar
     @$toolbar.ani 'slide in'
 
@@ -113,4 +118,4 @@ NN.EntryView = NN.View.extend
     false
 
 $('.news-pane.entry').livequery ->
-  new NN.EntryView el: this
+  new NN.EntryView el: this  unless $(this).is('[data-dynamic]')
