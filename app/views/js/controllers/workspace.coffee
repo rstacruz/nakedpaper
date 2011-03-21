@@ -38,7 +38,7 @@ NN.Workspace = Backbone.Controller.extend
     return true  unless entry.exists?
 
     view = new NN.EntryView(model: entry)
-    view.render()
+    NN.Page._loadPane $(view.el)
 
   _loadPane: ($news) ->
     # Add it
@@ -73,3 +73,6 @@ $('.news-pane.feed').livequery ->
 
   # Build the view
   feed.view ||= new NN.FeedView(el: this, model: feed)
+
+$('.news-pane.entry').livequery ->
+  new NN.EntryView el: this  unless $(this).is('[data-dynamic]')

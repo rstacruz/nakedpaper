@@ -1,25 +1,26 @@
+# Can be instanciated as:
+# new NN.EntryView model: ...
+# new NN.EntryView el: ...
+#
 NN.EntryView = NN.View.extend
   templates:
     page:
       _.template """
-        <div class='news-pane entry' data-all-class='entry' 
-        data-dynamic='true'>
-          <header>
-            <div class='source'>
-              <a href="<%= feed.path() %>">
-                <%= feed.attributes.title %>
-              </a>
-            </div>
-            <h1>
-              <a href="<%= e.url %>" rel="nofollow" target="_blank">
-                <%= e.title %>
-              </a>
-            </h1>
-          </header>
-
-          <div class='contents'>
-            <%= e.content %>
+        <header>
+          <div class='source'>
+            <a href="<%= feed.path() %>">
+              <%= feed.attributes.title %>
+            </a>
           </div>
+          <h1>
+            <a href="<%= e.url %>" rel="nofollow" target="_blank">
+              <%= e.title %>
+            </a>
+          </h1>
+        </header>
+
+        <div class='contents'>
+          <%= e.content %>
         </div>
       """
 
@@ -63,20 +64,24 @@ NN.EntryView = NN.View.extend
     @$el   = $ @el
     @$body = $ "body"
 
-    @_spawnToolbar()
-    @_cureLinks()
+    @render()
 
   render: ->
-    @el = @templates.page
-      entry:    @model
-      feed:     @model.feed
-      e:        @model.attributes
+    # Build the HTML if we're not given an element.
+    if @model
+      page = @templates.page
+        entry:    @model
+        feed:     @model.feed
+        e:        @model.attributes
 
-    @$el = $ @el
+      @$el.html page
+      @$el.attr 'class', 'news-pane entry'
+      @$el.attr 'data-all-class', 'entry'
+      @$el.attr 'data-dynamic', 'true'
+      @$el.attr 'data-source', @model.href
 
     @_spawnToolbar()
-    @delegateEvents()
-    NN.Page._loadPane @$el
+    @_cureLinks()
 
   _spawnToolbar: ->
     href = @$el.find('h1 a').attr('href')
@@ -117,6 +122,3 @@ NN.EntryView = NN.View.extend
   onBack: (e) ->
     history.go -1
     false
-
-$('.news-pane.entry').livequery ->
-  new NN.EntryView el: this  unless $(this).is('[data-dynamic]')
