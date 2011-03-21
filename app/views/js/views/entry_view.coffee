@@ -37,6 +37,8 @@ class NN.EntryView extends NN.View
       @$el.attr 'data-dynamic',   'true'
       @$el.attr 'data-source',    @model.href
 
+    $('body').scrollTop 0
+
     @_spawnToolbar()
     @_spawnNav()
     @_cureLinks()
