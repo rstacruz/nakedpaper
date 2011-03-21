@@ -129,7 +129,8 @@ body {
   &.size-small .news-pane.entry { font-size: 9pt; }
   &.size-large .news-pane.entry { font-size: 12pt; }
 
-  &.font-serif .news-pane.entry { font-family: goudy, serif; }
+  &.font-serif .news-pane.entry {
+    font-family: 'palatino linotype', georgia, serif; }
 
   &.color-dark {
     //background: #555;
