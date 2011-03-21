@@ -1,9 +1,15 @@
 class NN.Feed extends NN.Model
-  # A list of entries. [NN.Entry[]]
+  # A list of entries. [Hash {str => NN.Entry}]
   entries: {}
 
   # The associated view. [NN.FeedView]
   view: null
+
+  # The URL path. [string]
+  path: null
+
+  initialize: ->
+    @path = "/feed/#{@id}"
 
   # Fetches entries from the DOM.
   _updateEntries: ($articles) ->
@@ -26,11 +32,9 @@ class NN.Feed extends NN.Model
 
       @entries[id] = entry
 
+  # Returns a list of entries. [NN.Entry[]]
   getEntriesList: ->
     _.map @entries, (value) -> value
-
-  path: ->
-    "/feed/#{@id}"
 
   # Fetches an entry of a given ID.
   entry: (id) ->

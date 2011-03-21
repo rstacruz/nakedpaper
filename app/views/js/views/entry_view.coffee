@@ -3,59 +3,6 @@
 # new NN.EntryView el: ...
 #
 class NN.EntryView extends NN.View
-  templates:
-    page:
-      _.template """
-        <header>
-          <div class='source'>
-            <a href="<%= feed.path() %>">
-              <%= feed.attributes.title %>
-            </a>
-          </div>
-          <h1>
-            <a href="<%= e.url %>" rel="nofollow" target="_blank">
-              <%= e.title %>
-            </a>
-          </h1>
-        </header>
-
-        <div class='contents'>
-          <%= e.content %>
-        </div>
-      """
-
-    toolbar:
-      _.template """
-        <nav class="toolbar">
-          <nav>
-            <a title="Back" href="#back" class="back">&lsaquo;</a>
-          </nav>
-
-          <% if (href) { %>
-            <nav>
-              <a title="View source" href="<%= href %>" target="_blank"   
-              class="source" rel="nofollow">Src</a>
-            </nav>
-          <% } %>
-
-          <nav>
-            <a title="Small font" href="#size/small" class="variant size size-small">Aa</a>
-            <a title="Medium font" href="#size/medium" class="variant size size-medium">Aa</a>
-            <a title="Large font" href="#size/large" class="variant size size-large">Aa</a>
-          </nav>
-
-          <nav>
-            <a title="Sans" href="#font/sans" class="variant font font-sans">Sn</a>
-            <a title="Serif" href="#font/serif" class="variant font font-serif">Srf</a>
-          </nav>
-
-          <nav>
-            <a title="Dark" href="#color/dark" class="variant color color-dark">D</a>
-            <a title="Light" href="#color/light" class="variant color color-light">L</a>
-          </nav>
-        </nav>
-      """
-
   events:
     'click a.back':    'onBack'
     'click a.variant': 'onSwitchVariant'
@@ -122,3 +69,57 @@ class NN.EntryView extends NN.View
   onBack: (e) ->
     history.go -1
     false
+
+  templates:
+    page:
+      _.template """
+        <header>
+          <div class='source'>
+            <a href="<%= feed.path %>">
+              <%= feed.attributes.title %>
+            </a>
+          </div>
+          <h1>
+            <a href="<%= e.url %>" rel="nofollow" target="_blank">
+              <%= e.title %>
+            </a>
+          </h1>
+        </header>
+
+        <div class='contents'>
+          <%= e.content %>
+        </div>
+      """
+
+    toolbar:
+      _.template """
+        <nav class="toolbar">
+          <nav>
+            <a title="Back" href="#back" class="back">&lsaquo;</a>
+          </nav>
+
+          <% if (href) { %>
+            <nav>
+              <a title="View source" href="<%= href %>" target="_blank"   
+              class="source" rel="nofollow">Src</a>
+            </nav>
+          <% } %>
+
+          <nav>
+            <a title="Small font" href="#size/small" class="variant size size-small">Aa</a>
+            <a title="Medium font" href="#size/medium" class="variant size size-medium">Aa</a>
+            <a title="Large font" href="#size/large" class="variant size size-large">Aa</a>
+          </nav>
+
+          <nav>
+            <a title="Sans" href="#font/sans" class="variant font font-sans">Sn</a>
+            <a title="Serif" href="#font/serif" class="variant font font-serif">Srf</a>
+          </nav>
+
+          <nav>
+            <a title="Dark" href="#color/dark" class="variant color color-dark">D</a>
+            <a title="Light" href="#color/light" class="variant color color-light">L</a>
+          </nav>
+        </nav>
+      """
+
