@@ -36,8 +36,8 @@ NN.Workspace = Backbone.Controller.extend
     NN.loader.start()
 
     @request.abort()  if @request?
-    @request = $.get path, success: (data) =>
-      callback data
+    @request = $.get path, (data, type) =>
+      callback data  if type == 'success'
       $(document).trigger 'after_navigate'  # does loader.stop()
 
   entry: (feed_id, entry_id) ->
