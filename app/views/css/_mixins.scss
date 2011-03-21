@@ -60,6 +60,21 @@ a.non-link {
     code { background: none; border: 0; padding: 0; }
   }
 
+  table {
+    width: 100%; border-collapse: collapse;
+    border-bottom: solid 1px #aaa;
+
+    tr:first-child {
+      th, td { border-top: solid 1px #aaa; } }
+
+    th, td {
+      text-align: center; line-height: 20pt;
+      padding: 3px 0; border-top: solid 1px #ddd; }
+
+    th {
+      font-size: 0.8em; color: #888; }
+  }
+
   p > img:first-child:last-child { display: block; margin: 0 auto; }
   p > a:first-child:last-child > img:first-child:last-child { display: block; margin: 0 auto; }
 }
