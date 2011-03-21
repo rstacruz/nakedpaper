@@ -23,8 +23,11 @@ a.non-link {
   blockquote, pre,
   p, h2, h3, h4, h5, h6 {
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     @extend .scroll;
+
+    >:first-child { margin-top: 0; }
+    >:last-child  { margin-bottom: 0; }
   }
 
   h2, h3, h4, h5, h6 {
@@ -37,10 +40,11 @@ a.non-link {
 
   img {
     max-width: 95%;
-    padding: 2px; background: $black05; border: solid 1px #ccc; }
+    padding: 0; background: #eee;
+    border: solid 6px white; }
 
   a:hover img {
-    background-color: $green; }
+    border-color: $green; }
 
   code, pre {
     font-family: 'droid sans mono', monaco, monospace;

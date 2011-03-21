@@ -20,6 +20,9 @@ unless defined?(GReader)
   exit
 end
 
+require './lib/normalizer'
+GReader.html_processors << lambda { |str| Normalizer::normalize str }
+
 class Main < Sinatra::Base
   set      :root, lambda { |*args| File.join(File.dirname(__FILE__), *args) }
   set      :views, root('app', 'views')

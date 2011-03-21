@@ -60,6 +60,7 @@ article h2 {
 
     &:first-of-type {
       width: 50%;
+      span.image { height: 140px; }
       h2 { font-size: 16pt; }
       .summary { font-size: 12pt; }
     }
