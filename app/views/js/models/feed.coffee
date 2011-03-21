@@ -1,3 +1,12 @@
+# Feed.
+# 
+# == Instanciating
+#   NN.Feed.find('FEED_ID')
+#   # heh, this sucks, need to refactor this with _updateEntries and shit.
+#
+# == Attributes
+# - title
+#
 class NN.Feed extends NN.Model
   # A list of entries. [Hash {str => NN.Entry}]
   entries: {}
@@ -19,7 +28,7 @@ class NN.Feed extends NN.Model
       $e    = $($e)
       id    = $e.attr('data-entry_id')
 
-      entry = new NN.Entry(id: id)
+      entry = new NN.Entry(id: id, feed: this)
       entry.feed = this
       entry.set
         href:      $e.find('>.title').attr('href')

@@ -7,6 +7,12 @@ class NN.EntryView extends NN.View
     'click a.back':    'onBack'
     'click a.variant': 'onSwitchVariant'
 
+  # The toolbar. (<nav.toolbar>)
+  $toolbar: null
+
+  # The 'you are reading:' thing. (<nav>)
+  $nav: null
+
   initialize: ->
     @$el   = $ @el
     @$body = $ "body"
@@ -22,14 +28,39 @@ class NN.EntryView extends NN.View
         e:        @model.attributes
 
       @$el.html page
+
+      # Standard issue for all news-pane views
+      # (Usually populated remotely via the controller...
+      # have to build it manually for this)
       @$el.attr 'class', 'news-pane entry'
       @$el.attr 'data-all-class', 'entry'
-      @$el.attr 'data-dynamic', 'true'
-      @$el.attr 'data-source', @model.href
+      @$el.attr 'data-dynamic',   'true'
+      @$el.attr 'data-source',    @model.href
 
     @_spawnToolbar()
+    @_spawnNav()
     @_cureLinks()
 
+  # Renders the nav thing.
+  # (Delegate of render())
+  _spawnNav: ->
+    return true  unless @model
+
+    @$nav = $ @templates.nav
+      e:    @model.attributes
+      next: @model.getNext()
+      prev: @model.getPrev()
+      feed: @model.attributes.feed
+
+    @$el.append @$nav
+    @$nav.ani 'fade in'
+
+    @$nav.find('a').tipTip
+      delay: 0, edgeOffset: 5, fadeIn: 80, maxWidth: "300px",
+      defaultPosition: 'left'
+
+  # Renders the toolbar.
+  # (Delegate of render())
   _spawnToolbar: ->
     href = @$el.find('h1 a').attr('href')
 
@@ -40,7 +71,8 @@ class NN.EntryView extends NN.View
     @$toolbar.ani 'slide in'
 
     @$toolbar.find('a').tipTip
-      delay: 0, edgeOffset: 5, fadeIn: 80, maxWidth: "300px", defaultPosition: 'right'
+      delay: 0, edgeOffset: 5, fadeIn: 80, maxWidth: "300px",
+      defaultPosition: 'right'
 
   # Make all links open in a new window.
   _cureLinks: ->
@@ -89,6 +121,37 @@ class NN.EntryView extends NN.View
         <div class='contents'>
           <%= e.content %>
         </div>
+      """
+
+    nav:
+      _.template """
+        <nav class="nav">
+          <% if (prev) { %>
+            <a class='next' href="<%= prev.path %>">
+              <span class='icon'>&lsaquo;</span>
+              <small>Previous:</small>
+              <strong><%= prev.attributes.title %></strong>
+            </a>
+            </dl>
+          <% } %>
+
+          <% if ((e.title) && (feed)) { %>
+            <a class='status' href="<%= feed.path %>" title="Back to feed">
+              <span class='icon'>&middot;</span>
+              <strong><%= e.title %></strong>
+              <small>from <%= feed.attributes.title %></small>
+            </a>
+          <% } %>
+
+          <% if (next) { %>
+            <a class='next' href="<%= next.path %>">
+              <span class='icon'>&rsaquo;</span>
+              <small>Next:</small>
+              <strong><%= next.attributes.title %></strong>
+            </a>
+            </dl>
+          <% } %>
+        </nav>
       """
 
     toolbar:

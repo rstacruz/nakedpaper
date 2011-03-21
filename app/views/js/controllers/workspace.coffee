@@ -31,15 +31,7 @@ class NN.Workspace extends Backbone.Controller
         $news.hide().html $data.find("#news").html()
         @_loadPane $news
 
-  # Issues an AJAX request.
-  get: (path, callback) ->
-    NN.loader.start()
-
-    @request.abort()  if @request?
-    @request = $.get path, (data, type) =>
-      callback data  if type == 'success'
-      $(document).trigger 'after_navigate'  # does loader.stop()
-
+  # /feed/:id/entry/:id
   entry: (feed_id, entry_id) ->
     feed  = NN.Feed.find(feed_id)
     entry = feed.entry(entry_id)
@@ -48,7 +40,16 @@ class NN.Workspace extends Backbone.Controller
     return true  unless entry.exists?
 
     view = new NN.EntryView(model: entry)
-    NN.Page._loadPane $(view.el)
+    @_loadPane $(view.el)
+
+  # Issues an AJAX request.
+  get: (path, callback) ->
+    NN.loader.start()
+
+    @request.abort()  if @request?
+    @request = $.get path, (data, type) =>
+      callback data  if type == 'success'
+      $(document).trigger 'after_navigate'  # does loader.stop()
 
   _loadPane: ($news) ->
     # Add it
@@ -83,4 +84,4 @@ $('.news-pane.feed').livequery ->
   feed.view ||= new NN.FeedView(el: this, model: feed)
 
 $('.news-pane.entry').livequery ->
-  new NN.EntryView el: this  unless $(this).is('[data-dynamic]')
+  new NN.EntryView(el: this)  unless $(this).is('[data-dynamic]')
