@@ -14,6 +14,5 @@ NN.NavView = NN.View.extend
       @$el.html data
       @$el.ani('fade in')
 
-
 $('#feeds').livequery ->
   NN.Nav = new NN.NavView el: this

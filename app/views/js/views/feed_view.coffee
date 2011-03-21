@@ -10,8 +10,6 @@ NN.FeedView = NN.View.extend
   classname: 'compact'
 
   initialize: ->
-    console.log "Init from #{@model.id}"
-
     @$el      = $ @el
     @$views   = @$ '.views'
 
@@ -37,7 +35,7 @@ NN.FeedView = NN.View.extend
     @$el.attr 'class', "news-pane feed #{@classname}"
     @buildView()
 
-    @$view.ani 'fade in'
+    # @$view.ani 'fade in'
 
     # Activate the button
     @$views.find('.active').removeClass 'active'

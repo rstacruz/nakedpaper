@@ -42,7 +42,8 @@ if pushSupport and Backbone? and Backbone.History?
       # We don't use JQuery event binding here because the popstate event isn't passed properly.
       # If there is no event.state then it must be a page load event, ignore it.
       self = this
-      window.onpopstate = (event) -> if event.state? then self.loadUrl()
+      window.onpopstate = (event) ->
+        if event.state? then self.loadUrl()
 
     # This has been modified to allow the fragment to be passed in directly.
     # If fragment is not passed it will be loaded from getFragment as usual.
