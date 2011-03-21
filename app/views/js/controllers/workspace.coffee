@@ -1,4 +1,4 @@
-NN.Workspace = Backbone.Controller.extend
+class NN.Workspace extends Backbone.Controller
   routes:
     'feed/:feed/entry/:entry': 'entry'
     '*path': 'load'

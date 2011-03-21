@@ -2,7 +2,7 @@
 # new NN.EntryView model: ...
 # new NN.EntryView el: ...
 #
-NN.EntryView = NN.View.extend
+class NN.EntryView extends NN.View
   templates:
     page:
       _.template """

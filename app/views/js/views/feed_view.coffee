@@ -1,5 +1,5 @@
 # This is spawned by the NN.Feed model
-NN.FeedView = NN.View.extend
+class NN.FeedView extends NN.View
   events:
     'click .views a':  'onSwitchView'
 
@@ -19,10 +19,10 @@ NN.FeedView = NN.View.extend
 
     @switchTo @subtypes['compact']
 
-  # The views toolbar
+  # The views toolbar (<nav>)
   $views: undefined
 
-  # The scrollable area
+  # The scrollable area. (<div>)
   $view: undefined
 
   # Switches to a given view.
@@ -34,8 +34,6 @@ NN.FeedView = NN.View.extend
     _.extend this, view
     @$el.attr 'class', "news-pane feed #{@classname}"
     @buildView()
-
-    # @$view.ani 'fade in'
 
     # Activate the button
     @$views.find('.active').removeClass 'active'
@@ -68,52 +66,3 @@ NN.FeedView = NN.View.extend
 
     @switchTo view  if view?
     false
-
-NN.LineFeedView =
-  classname: 'line'
-
-  template:
-    _.template """
-    <% _.each(entries, function(entry) { %>
-      <% e = entry.attributes; %>
-      <article>
-        <a href="<%= e.href %>">
-          <span class="date">
-            <%= e.published.toLocaleString() %>
-          </span>
-          <% if (e.image) { %>
-            <span class="image" style="background-image:
-              url(<%= e.image %>);"></span>
-          <% } %>
-          <strong>
-            <%= e.title %>
-          </strong>
-          <div class="summary">
-            <%= e.summary %>
-          </div>
-        </a>
-      </article>
-    <% }); %>
-    """
-
-NN.CompactFeedView =
-  classname: 'compact'
-
-  template:
-    _.template """
-    <% _.each(entries, function(entry) { %>
-      <% e = entry.attributes; %>
-      <article>
-        <a href="<%= e.href %>">
-          <% if (e.image) { %>
-            <span class="image" href="<%= e.href %>" style="background-image: 
-            url(<%= e.image %>);"></span>
-          <% } %>
-
-          <h2><%= e.title %></h2>
-
-          <div class="summary"><%= e.summary %></div>
-        </a>
-      </article>
-    <% }); %>
-    """

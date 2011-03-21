@@ -1,4 +1,4 @@
-NN.NavView = NN.View.extend
+class NN.NavView extends NN.View
   initialize: ->
     @$el = $ @el
     @fetch()  if @isEmpty()

@@ -1,4 +1,4 @@
-NN.Feed = NN.Model.extend
+class NN.Feed extends NN.Model
   # A list of entries. [NN.Entry[]]
   entries: {}
 
