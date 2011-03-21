@@ -1,0 +1,18 @@
+{
+  "name": "Nakedpaper",
+  "description": "Read your feeds in style",
+  "version": "1",
+  "app": {
+    "urls": [
+      "*://nakedpaper-dev.heroku.com/"
+    ],
+    "launch": {
+      "web_url": "http://nakedpaper-dev.heroku.com/"
+    }
+  },
+  "icons": {
+    "128": "128.png"
+  },
+  "permissions": []
+}
+
