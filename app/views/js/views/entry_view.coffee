@@ -75,6 +75,7 @@ NN.EntryView = NN.View.extend
     @$el = $ @el
 
     @_spawnToolbar()
+    @delegateEvents()
     NN.Page._loadPane @$el
 
   _spawnToolbar: ->
