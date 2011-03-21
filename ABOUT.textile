@@ -8,9 +8,7 @@ h3. Todo
 * Entry dates
 * Logout when 401'ing or something -- don't know how to fix this yet
 * Better scraping
-  * Filter blank stuff
-  * Remove styles
-  * Mark image paragraphs
+  * Clean code>pre and pre>code
 
 h3. Less-than-critical to do
 
@@ -39,3 +37,7 @@ h3. Done:
 * Superfast entry pages
 * Prev/next links for entries
 * Chrome extension
+* Better scraping
+  * Filter blank stuff
+  * Remove styles
+  * Mark image paragraphs
