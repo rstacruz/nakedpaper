@@ -57,6 +57,9 @@ class Main < Sinatra::Base
 
   register Sinatra::CssSupport
   serve_css '/css', from: root('app/css')
+
+  register Sinatra::JsFilesSupport
+  serve_jsfiles '/js/app.js', js_files
 end
 
 # Set up OAuth

@@ -94,3 +94,28 @@ class JsFiles
   end
 end
 
+if defined?(Sinatra)
+  # == Example
+  #
+  #   register Sinatra::JsFilesSupport
+  #   serve_jsfiles '/js/app.js'
+  #
+  module Sinatra::JsFilesSupport
+    def self.registered(app)
+      app.set :jsfiles_cache_max_age, 86400*30
+    end
+
+    def serve_jsfiles(path, jsfiles)
+      get path do
+        js = settings.js_files
+
+        content_type :js
+        last_modified js.mtime
+        etag js.mtime.to_i
+        cache_control :public, :must_revalidate, :max_age => settings.jsfiles_cache_max_age
+
+        js.compressed
+      end
+    end
+  end
+end

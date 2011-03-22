@@ -1,5 +1,5 @@
 # Project (general)
-/vendor/*
+/vendor/gems/*
 ! /vendor/.gitignore
 /log
 /logs
