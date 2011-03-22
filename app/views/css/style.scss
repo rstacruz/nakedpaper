@@ -12,6 +12,7 @@ body { background: $bg; }
 #all.entry { @include shadow(inset 0 5px 0 $maroon); }
 
 @import 'mixins';
+@import 'readable';
 @import 'jquery-tiptip';
 @import 'loading';
 @import 'feeds';

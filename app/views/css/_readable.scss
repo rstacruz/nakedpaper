@@ -1,0 +1,83 @@
+// For readable sections (like articles)
+.readable {
+  blockquote, pre,
+  p, ul, ol, h2, h3, h4, h5, h6 {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  ul, ol { ul, ol { margin-top: 0.5em; margin-bottom: 0.5em; } }
+
+  p.image { text-align: center; }
+
+  h1 a {
+    font-weight: bold; }
+
+  h1 a:hover {
+    background: none; }
+
+  blockquote, pre,
+  p, h2, h3, h4, h5, h6 {
+    overflow-y: hidden;
+    overflow-x: auto;
+    @extend .scroll;
+
+    >:first-child { margin-top: 0; }
+    >:last-child  { margin-bottom: 0; }
+  }
+
+  h2, h3, h4, h5, h6 {
+    font-family: $serif;
+    margin: 30px 0 30px 0;
+    color: $red;
+    text-align: center;
+    font-size: 1.3em;
+  }
+
+  a {
+    font-weight: normal; }
+  
+  a:hover {
+    @include border-radius(2px);
+    text-decoration: none; color: $pink; }
+
+  img {
+    max-width: 95%;
+    padding: 0; background: #eee;
+    border: solid 6px white; }
+
+  a:hover img {
+    border-color: $green; }
+
+  code, pre {
+    font-family: 'droid sans mono', monaco, monospace;
+    background: #eee; text-shadow: 1px 1px 0 $white90; color: #333;
+    border: solid 1px $black10;
+    @include border-radius(2px); padding: 0 3px;
+  }
+
+  pre {
+    @include border-radius(4px); padding: 10px; background: #eee; overflow: auto; font-size: 10pt;
+    @include shadow(2px 2px 0 $black10);
+    line-height: 1.5;
+    code { background: none; border: 0; padding: 0; }
+  }
+
+  table {
+    width: 100%; border-collapse: collapse;
+    border-bottom: solid 1px #aaa;
+
+    tr:first-child {
+      th, td { border-top: solid 1px #aaa; } }
+
+    th, td {
+      text-align: center; line-height: 20pt;
+      padding: 3px 0; border-top: solid 1px #ddd; }
+
+    th {
+      font-size: 0.8em; color: #888; }
+  }
+
+  p > img:first-child:last-child { display: block; margin: 0 auto; }
+  p > a:first-child:last-child > img:first-child:last-child { display: block; margin: 0 auto; }
+}
