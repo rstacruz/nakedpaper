@@ -18,10 +18,13 @@ task :default => :test
 
 namespace :freeze do
   def session
-    require './init'
-    require 'fileutils'
-    require 'rack/test'
-    @session ||= Rack::Test::Session.new(Main)
+    @session ||= begin
+      ENV['RACK_ENV'] = 'production'
+      require 'fileutils'
+      require 'rack/test'
+      require './init'
+      Rack::Test::Session.new(Main)
+    end
   end
 
   def get(path)
