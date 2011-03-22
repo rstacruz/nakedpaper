@@ -3,15 +3,35 @@
 # This is a general-purpose class usually used for minification
 # of JS assets.
 #
+# This is often used with Sinatra, but can work with any other
+# web framework.
+#
 # === Usage example
 #
 #   files  = Dir['public/js/jquery.*.js']
 #   files += Dir['public/js/app.*.js']
-#   Main.set :js_files, JsFiles.new(files, :prefix => '/javascript')
 #
+#   # Say, Main is a Sinatra app or something.
+#   Main.set :js_files, JsFiles.new(files, :prefix => '/javascript')
 #   Main.js_files.mtime #=> (Time) 2010-09-02 8:00PM
 #
-#   # For, say, a Rake task
+# Using in Sinatra:
+#
+#   class Main < Sinatra::Base
+#     register Sinatra::JsFilesSupport
+#     serve_jsfiles '/js/app.js', js_files
+#   end
+#
+#   # This returns the compressed script:
+#   # $ curl http://localhost:4567/js/app.js
+#
+# You can also use this in your views:
+#
+#   <!-- Shows <script> tags -->
+#   <%= settings.js_files.to_html %>
+#
+# Getting the data (for rake tasks perhaps):
+#
 #   File.open('public/scripts.js', 'w') do |f|
 #     f << Main.js_files.combined
 #   end
