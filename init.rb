@@ -51,6 +51,9 @@ class Main < Sinatra::Base
 
   register Sinatra::CoffeeSupport
   serve_js '/js', from: root('app/js')
+
+  register Sinatra::CssSupport
+  serve_css '/css', from: root('app/css')
 end
 
 # Set up OAuth
