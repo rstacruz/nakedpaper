@@ -1,22 +1,22 @@
 class Main
   # Libraries
-  files  = Dir[root(%w[app views js vendor jquery.js])]
-  files  = Dir[root(%w[app views js vendor jquery.*.*])]
-  files += Dir[root(%w[app views js vendor underscore.js])]
-  files += Dir[root(%w[app views js vendor backbone.js])]
+  files  = Dir[root(%w[app js vendor jquery.js])]
+  files  = Dir[root(%w[app js vendor jquery.*.*])]
+  files += Dir[root(%w[app js vendor underscore.js])]
+  files += Dir[root(%w[app js vendor backbone.js])]
 
-  files += Dir[root(%w[app views js lib *.*])]
+  files += Dir[root(%w[app js lib *.*])]
 
   # Backbone
-  files += Dir[root(%w[app views js models *.*])]
-  files += Dir[root(%w[app views js views *.*])]
-  files += Dir[root(%w[app views js controllers *.*])]
+  files += Dir[root(%w[app js models *.*])]
+  files += Dir[root(%w[app js views *.*])]
+  files += Dir[root(%w[app js controllers *.*])]
 
   # Behaviors
-  files += Dir[root(%w[app views js app.*.*])]
+  files += Dir[root(%w[app js app.*.*])]
 
   set :js_files, JsFiles.new(
     files,
     :prefix => '/js',
-    :file_prefix => root(%w[app views js]))
+    :file_prefix => root(%w[app js]))
 end

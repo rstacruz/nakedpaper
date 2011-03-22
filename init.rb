@@ -1,11 +1,14 @@
 ENV['RACK_ENV'] ||= 'development'
 
+# Loadables
+$:.unshift *Dir["./vendor/plugins/*/lib"]
+$:.unshift *Dir["."]
+
 # Bundler
 require "bundler"
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
 # Plugins
-$:.unshift *Dir["./vendor/plugins/*/lib"]
 require "rtopia"
 require "jsfiles"
 require "user_agent"
@@ -20,7 +23,8 @@ unless defined?(GReader)
   exit
 end
 
-require './lib/normalizer'
+require 'lib/normalizer'
+require 'lib/sinatra-ext'
 GReader.html_processors << lambda { |str| Normalizer::normalize str }
 
 class Main < Sinatra::Base
@@ -44,6 +48,9 @@ class Main < Sinatra::Base
     require 'pistol'
     use(Pistol, Dir["./{lib,app}/**/*.rb"]) { reset! and load(__FILE__) }
   end
+
+  register Sinatra::CoffeeSupport
+  serve_js '/js', from: root('app/js')
 end
 
 # Set up OAuth
@@ -61,7 +68,7 @@ else
   puts "*** See config/oauth.defaults.rb for details."
 end
 
-Dir["./{lib,app/**}/*.rb"].each { |rb| require rb }
+Dir["./app/**/*.rb"].each { |rb| require rb }
 
 Main.set :port, ENV['PORT'].to_i  unless ENV['PORT'].nil?
 Main.run!  if Main.run?
