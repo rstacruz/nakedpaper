@@ -2,7 +2,7 @@ ENV['RACK_ENV'] ||= 'development'
 
 # Loadables
 $:.unshift *Dir["./vendor/plugins/*/lib"]
-$:.unshift *Dir["."]
+$:.unshift *Dir["./lib"]
 
 # Bundler
 require "bundler"
@@ -23,8 +23,11 @@ unless defined?(GReader)
   exit
 end
 
-require 'lib/normalizer'
-require 'lib/sinatra-ext'
+# Libs
+require 'normalizer'
+require 'sinatra/csssupport'
+require 'sinatra/jssupport'
+
 GReader.html_processors << lambda { |str| Normalizer::normalize str }
 
 class Main < Sinatra::Base
@@ -49,7 +52,7 @@ class Main < Sinatra::Base
     use(Pistol, Dir["./{lib,app}/**/*.rb"]) { reset! and load(__FILE__) }
   end
 
-  register Sinatra::CoffeeSupport
+  register Sinatra::JsSupport
   serve_js '/js', from: root('app/js')
 
   register Sinatra::CssSupport
