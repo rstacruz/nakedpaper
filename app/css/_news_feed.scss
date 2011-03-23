@@ -134,8 +134,10 @@ article h2 {
         1px 1px 0 white,
         2px 2px 0 $black20);
       @include box-sizing(border-box);
-      padding-top: 10px;
       display: block; height: 100%; width: 100%; font-weight: normal; }
+
+    &.image a {
+      padding-top: 10px; }
 
     a:hover {
       text-decoration: none; }
