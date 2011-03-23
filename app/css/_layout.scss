@@ -11,12 +11,13 @@ html, body, #all { height: 100%; }
 #news-panes { height: 100%; }
 
 #logo {
-  a { position: fixed; top: 0; right: 35px; }
-
-  a { margin: 0; padding: 0 10px; font-size: 18pt; }
-  a { display: block; background: #333; }
-  a { line-height: 50px; width: 145px; }
-  a { color: white; }
+  a {
+    position: fixed; top: 5px; right: 35px; 
+    margin: 0; padding: 0 10px; font-size: 18pt; 
+    display: block; background: #333; 
+    line-height: 45px; width: 145px; 
+    font-family: $pt-sans;
+    color: white; }
 
   a:hover { text-decoration: none; background: $blue; }
 }

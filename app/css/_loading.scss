@@ -5,7 +5,7 @@ body.loading {
 }
 
 #loading {
-  position: fixed; right: 35px; top: 5px;
+  position: fixed; right: 0; top: 5px;
   width: 41px; height: 41px;
   background: $pink url(/images/ajax-loader.gif) center center no-repeat;
   padding: 2px;

@@ -1,6 +1,4 @@
 @import 'settings';
-
-$reset-font: 'helvetica neue', helvetica, arial, helvetica, sans-serif;
 @include ae-reset;
 
 body { background: $bg; }
