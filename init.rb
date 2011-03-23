@@ -8,77 +8,23 @@ $:.unshift *Dir["./lib"]
 require "bundler"
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
-# Plugins
-require "rtopia"
-require "jsfiles"
-require "user_agent"
-
-# Explicitly use a development version of greader
-greader_path = './vendor/gems/greader/lib/greader.rb'
-require greader_path  if File.file? greader_path
-
-unless defined?(GReader)
-  puts "*** Unable to load the greader gem."
-  puts "    See the README for details."
-  exit
-end
-
-# Libs
-require 'normalizer'
-require 'sinatra/csssupport'
-require 'sinatra/jssupport'
-
-GReader.html_processors << lambda { |str| Normalizer::normalize str }
-
 class Main < Sinatra::Base
   set      :root, lambda { |*args| File.join(File.dirname(__FILE__), *args) }
+  set      :run,  lambda { __FILE__ == $0 and not running? }
   set      :views, root('app', 'views')
-  set      :run, lambda { __FILE__ == $0 and not running? }
 
-  enable   :raise_errors, :logging,
-           :show_exceptions, :raise_errors
+  enable   :raise_errors, :logging
+  enable   :show_exceptions, :raise_errors
 
   use      Rack::Session::Pool
-
-  helpers  Rtopia
-  helpers  Sinatra::ContentFor        # sinatra-content_for
-  helpers  Sinatra::UserAgentHelpers  # agentsniff
-
-  # Load all, but load defaults first
-  Dir[root('config', '{*.defaults,*}.rb')].uniq.each { |f| load f }
-
-  configure :development do
-    require 'pistol'
-    use(Pistol, Dir["./{lib,app}/**/*.rb"]) { reset! and load(__FILE__) }
-  end
-
-  register Sinatra::JsSupport
-  serve_js '/js', from: root('app/js')
-
-  register Sinatra::CssSupport
-  set :css_max_age, 0  if development?
-  serve_css '/css', from: root('app/css')
-
-  register Sinatra::JsFilesSupport
-  serve_jsfiles '/js/app.js', js_files
 end
 
-# Set up OAuth
-key    = Main.oauth_key    || ENV['OAUTH_KEY']
-secret = Main.oauth_secret || ENV['OAUTH_SECRET']
+# Load files
+(Dir['./config/*.defaults.rb'] +
+ Dir['./config/*.rb'] +
+ Dir['./app/init/*.rb'] +
+ Dir['./app/**/*.rb']
+).uniq.each { |rb| require rb }
 
-Main.set :oauth, !(key.nil? || secret.nil?)
-
-if Main.oauth?
-  Main.use OmniAuth::Builder do
-    provider :google, key, secret, scope: "http://www.google.com/reader/api"
-  end
-else
-  puts "*** You need to enter the Google OAuth key/secret."
-  puts "*** See config/oauth.defaults.rb for details."
-end
-
-Dir["./app/**/*.rb"].each { |rb| require rb }
-
-Main.set :port, ENV['PORT'].to_i  unless ENV['PORT'].nil?
+Main.set :port, ENV['PORT'].to_i  if ENV['PORT']
 Main.run!  if Main.run?
