@@ -7,3 +7,13 @@ a.non-link {
 .hide {
   display: none;
 }
+
+.pseudo-image {
+  background-size: 100% auto;
+  background-position: center center;
+  background-color: #eee;
+  border: solid 2px #fff;
+  @include shadow(0 0 1px black);
+  &:hover { border-color: $maroon; }
+}
+

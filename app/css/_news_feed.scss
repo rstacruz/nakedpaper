@@ -3,15 +3,6 @@ article h2 {
   font-family: Georgia, serif;
 }
 
-.pseudo-image {
-  background-size: 100% auto;
-  background-position: center center;
-  background-color: #eee;
-  border: solid 2px #fff;
-  @include shadow(0 0 1px black);
-  &:hover { border-color: $maroon; }
-}
-
 // Line view
 #all .news-pane.feed.line {
   .view { padding: 0 20px; }
@@ -89,17 +80,31 @@ article h2 {
     padding-left: 10px; }
 
   article {
-    width: 25%; @include box-sizing(border-box);
-    border: solid 10px white; background: #333;
-    float: left; height: 33%; position: relative;
-    @extend .pseudo-image; @include shadow(none);
+    &:first-of-type {
+      width: 50%; }
 
     & {
-      background: #111; }
+      @extend .pseudo-image; }
+
+    & {
+      width: 25%; @include box-sizing(border-box);
+      border: solid 10px white;
+      float: left; height: 33%; position: relative;
+      @include shadow(none); }
+
+    &.image {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #eee; }
+
+    .summary {
+      display: none;
+      padding: 0 10px;
+      color: #888; }
 
     h2 {
       margin: 0;
-      padding: 10px; color: white;
+      padding: 10px; color: #aaa;
       font-family: $reset-font;
       text-overflow: ellipsis; overflow: hidden; }
 
@@ -107,9 +112,10 @@ article h2 {
       //position: absolute; top: 0; left: 0;
       //position: relative; left: -3px;
       @include box-sizing(border-box);
-      width: 100%; margin: 0;
+      margin: 0 20px 5px -5px;
       font-size: 9pt;
-      background: $black70; color: white;
+      background: $black80; color: white;
+      @include shadow(5px 5px $black30);
       padding: 5px 10px; }
       
     &:hover {
@@ -119,13 +125,21 @@ article h2 {
       border-color: $green; }
 
     a {
-      display: block; height: 100%; width: 100%; }
+      @include shadow(
+        1px 1px 0 white,
+        2px 2px 0 $black20);
+      @include box-sizing(border-box);
+      padding-top: 10px;
+      display: block; height: 100%; width: 100%; font-weight: normal; }
 
     a:hover {
       text-decoration: none; }
 
+    &.image:hover a {
+      @include shadow(none); }
+
     &:hover h2 {
-      color: white; padding-bottom: 10px; }
+      color: white; }
 
     &.image:hover h2 {
       background: $green; }

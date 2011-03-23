@@ -14,6 +14,7 @@ NN.GridFeedView =
         <% } %>
           <a href="<%= e.href %>">
             <h2><%= e.title %></h2>
+            <div class="summary"><%= e.summary %></div>
           </a>
         </article>
       <% }); %>
