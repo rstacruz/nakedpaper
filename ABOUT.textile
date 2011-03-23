@@ -2,24 +2,24 @@ Nakedpaper has been lovingly built by the boys of Sinefunc.com.
 
 h3. Todo
 
+* Tag view
 * Pagination
+* Hide special tags ('blogger-following' etc)
 * Title changing
-* Entries F55 and Camille's blog isn't working right
+* Bug: Entries in F55 and Camille's blog aren't working right
+* Bug: Encoding errors from TUAW
 * Entry dates
 * Logout when 401'ing or something -- don't know how to fix this yet
-* Better scraping
-  * Clean code>pre and pre>code
 
 h3. Less-than-critical to do
 
 * Growl
 * Icons for toolbar
 * Refresh button
-* Unread counts
-* Tag view
-* Hide special tags ('blogger-following' etc)
+* Unread markers
 * Lightbox image zoom
-* Image grid view
+* Better scraping
+  * Clean code>pre and pre>code
 
 h3. Further down
 
@@ -41,3 +41,4 @@ h3. Done:
   * Filter blank stuff
   * Remove styles
   * Mark image paragraphs
+* Image grid view
