@@ -118,6 +118,11 @@ article h2 {
       @include shadow(5px 5px $black30);
       padding: 5px 10px; }
       
+    &.image:hover h2 {
+      @include shadow(
+        1px 1px 0 $black20,
+        2px 2px 2px $black10); }
+
     &:hover {
       background-color: $green; border-color: white; }
 
