@@ -1,3 +1,13 @@
+window.NN ||= {}
+
+# The loader thing. Manages the showing and hiding of the
+# "Loading..." indicator.
+#
+# == Usage
+#
+#   NN.loader.start()
+#   NN.loader.stop()
+#
 NN.loader =
   count: 0
 

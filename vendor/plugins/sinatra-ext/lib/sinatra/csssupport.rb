@@ -12,7 +12,7 @@
 #
 module Sinatra::CssSupport
   def self.registered(app)
-    app.set :css_max_age, 86400*30
+    app.set :css_max_age, app.development? ? 0 : 86400*30
   end
 
   def serve_css(url_prefix, options={})
@@ -23,8 +23,8 @@ module Sinatra::CssSupport
       fname = Dir[File.join(prefix, "#{name}.{css,scss,less}")].first  or pass
 
       content_type :css, :charset => 'utf-8'
-      last_modified File.mtime(fname)
-      cache_control :public, :must_revalidate, :max_age => settings.js_max_age
+      last_modified File.mtime(fname)  if settings.production?
+      cache_control :public, :must_revalidate, :max_age => settings.css_max_age
 
       if fname =~ /\.scss$/
         scss File.read(fname)

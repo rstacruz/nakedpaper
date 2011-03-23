@@ -1,3 +1,4 @@
+# TODO: should have a repository of open views
 class NN.Workspace extends Backbone.Controller
   routes:
     'feed/:feed/entry/:entry': 'entry'

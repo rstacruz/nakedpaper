@@ -83,6 +83,55 @@ article h2 {
   }
 }
 
+// Compact view
+.news-pane.feed.grid {
+  .view {
+    padding-left: 10px; }
+
+  article {
+    width: 25%; @include box-sizing(border-box);
+    border: solid 10px white; background: #333;
+    float: left; height: 33%; position: relative;
+    @extend .pseudo-image; @include shadow(none);
+
+    & {
+      background: #111; }
+
+    h2 {
+      margin: 0;
+      padding: 10px; color: white;
+      font-family: $reset-font;
+      text-overflow: ellipsis; overflow: hidden; }
+
+    &.image h2 {
+      //position: absolute; top: 0; left: 0;
+      //position: relative; left: -3px;
+      @include box-sizing(border-box);
+      width: 100%; margin: 0;
+      font-size: 9pt;
+      background: $black70; color: white;
+      padding: 5px 10px; }
+      
+    &:hover {
+      background-color: $green; border-color: white; }
+
+    &.image:hover {
+      border-color: $green; }
+
+    a {
+      display: block; height: 100%; width: 100%; }
+
+    a:hover {
+      text-decoration: none; }
+
+    &:hover h2 {
+      color: white; padding-bottom: 10px; }
+
+    &.image:hover h2 {
+      background: $green; }
+  }
+}
+
 // News pane
 #all.feed .news-pane {
   & {

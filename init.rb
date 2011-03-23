@@ -56,6 +56,7 @@ class Main < Sinatra::Base
   serve_js '/js', from: root('app/js')
 
   register Sinatra::CssSupport
+  set :css_max_age, 0  if development?
   serve_css '/css', from: root('app/css')
 
   register Sinatra::JsFilesSupport

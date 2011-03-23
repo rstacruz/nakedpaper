@@ -7,8 +7,19 @@ class NN.FeedView extends NN.View
   # This is always set, don't worry
   model: null
 
+  # Expected classname
   classname: 'compact'
 
+  # Hash of templates. Override this.
+  templates:
+    first: -> ""
+    subsequent: -> ""
+
+  # A hash of available subtypes of the view (compact, grid, etc).
+  # Initialized on construction.
+  subtypes: {}
+
+  # Constructor.
   initialize: ->
     @$el      = $ @el
     @$views   = @$ '.views'
@@ -16,6 +27,7 @@ class NN.FeedView extends NN.View
     @subtypes =
       'line':    NN.LineFeedView
       'compact': NN.CompactFeedView
+      'grid':    NN.GridFeedView
 
     @switchTo @subtypes['compact']
 
@@ -33,7 +45,7 @@ class NN.FeedView extends NN.View
     # Switch
     _.extend this, view
     @$el.attr 'class', "news-pane feed #{@classname}"
-    @buildView()
+    @render()
 
     # Activate the button
     @$views.find('.active').removeClass 'active'
@@ -47,9 +59,9 @@ class NN.FeedView extends NN.View
 
   # Override me if you need to.
   # This is expected to set @$view
-  buildView: ->
+  render: ->
     @$view = $("<div class='view'>")
-    @$view.html @template('entries': @getEntries())
+    @$view.html @templates.first('entries': @getEntries())
 
     @$el.append @$view
 
