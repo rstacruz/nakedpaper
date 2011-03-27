@@ -87,13 +87,14 @@ article h2 {
 
   article {
     &:first-of-type {
-      width: 50%; }
+      width: 50%; background-size: 100% auto; }
 
     & {
       @extend .pseudo-image; }
 
     & {
       width: 25%; @include box-sizing(border-box);
+      background-size: auto 100%;
       border: solid 10px white;
       float: left; height: 33%; position: relative;
       @include shadow(none); }
