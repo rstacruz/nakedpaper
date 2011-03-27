@@ -22,14 +22,14 @@
     != yield
 
     - unless request.xhr?
-      != "<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,bold&subset=cyrillic,latin' rel='stylesheet' type='text/css'>"
-
       != jquery
 
       != "<!--[if lt IE 7 ]>"
       != dd_belatedpng
       %script!= "DD_belatedPNG.fix('img, .png_bg');"
       != "<![endif]-->"
+
+      != "<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,bold&subset=cyrillic,latin' rel='stylesheet' type='text/css'>"
 
       - if (settings.production? or params[:compress]) and params[:no_compress].nil?
         %script{:type => 'text/javascript', :src => '/js/app.js?%s' % [settings.js_files.mtime.to_i]}
